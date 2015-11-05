@@ -10,21 +10,18 @@ var app = {
   },
 
   events: function() {
-<<<<<<< HEAD
-    
-=======
-
-$('.wholethingy').on('click', '.login', function(event){
-event.preventDefault();
-
-
-});
->>>>>>> 8b7b9a40450efac7a29d2480daf49775bd609a7f
+    event.preventDefault();
+   $('.wholethingy').on('click', '.login', function(event){
+     // display other inputs for create user //
+     $('.selectpicker').removeClass('hidden-class');
+     $('.age').removeClass('hidden-class');
+     $('.location').removeClass('hidden-class');
+    });
   },
 
   styling: function() {
-      // var signIn = signIn;
-      // signIn = _.template(templates.signIn);
-      // $('.wholethingy').html(signIn);
+      var signIn = signIn;
+      signIn = _.template(templates.signIn);
+      $('.wholethingy').html(signIn);
   }
 };
