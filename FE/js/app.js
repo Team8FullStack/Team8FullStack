@@ -10,6 +10,7 @@ var app = {
   },
 
   events: function() {
+    app.postUser();
 
   },
 
