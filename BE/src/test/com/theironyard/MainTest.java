@@ -29,7 +29,7 @@ public class MainTest {
     @Test
     public void testUsers() throws SQLException {
         Connection conn = startConnection();
-        Main.insertUser(conn, "Alex", "password", true, "Charleston, SC", 25, 1);
+        Main.insertUser(conn, "Alex", "password", true, "Charleston, SC", 25, "Programmer");
         User user = Main.selectUser(conn, "Alex");
         endConnection(conn);
 
