@@ -10,7 +10,7 @@ var app = {
   },
 
   events: function() {
-
+    
   },
 
   styling: function() {
