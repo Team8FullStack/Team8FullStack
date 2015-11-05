@@ -12,9 +12,16 @@ var app = {
   events: function() {
     app.postUser();
 
+$('.wholethingy').on('click', '.login', function(event){
+event.preventDefault();
+
+
+});
   },
 
   styling: function() {
-
+      // var signIn = signIn;
+      // signIn = _.template(templates.signIn);
+      // $('.wholethingy').html(signIn);
   }
 };
