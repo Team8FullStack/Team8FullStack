@@ -1,3 +1,0 @@
-postUser: function() {
-  $('')
-}
