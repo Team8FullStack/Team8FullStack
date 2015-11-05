@@ -11,9 +11,16 @@ var app = {
 
   events: function() {
 
+$('.wholethingy').on('click', '.login', function(event){
+event.preventDefault();
+
+
+});
   },
 
   styling: function() {
-
+      // var signIn = signIn;
+      // signIn = _.template(templates.signIn);
+      // $('.wholethingy').html(signIn);
   }
 };
