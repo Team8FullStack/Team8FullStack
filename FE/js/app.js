@@ -10,26 +10,26 @@ var app = {
   },
 
   events: function() {
-
-$('.wholethingy').on('click', '.login', function(event){
+    $('.wholethingy').on('click', '.login', function(event){
           event.preventDefault();
           var mainpage = mainpage;
           mainpage = _.template(templates.mainpage);
-          $('.wholethingy').html(mainpage);
-           $('.wholethingy').on('click', '.login', function(event){
-             // display other inputs for create user //
-             $('.selectpicker').removeClass('hidden-class');
-             $('.age').removeClass('hidden-class');
-             $('.location').removeClass('hidden-class');
-            });
           });
-        },
+    $('.revealCreateUser').on('click', function(event) {
+      event.preventDefault();
+      $('.signIn').addClass('hidden');
+      $('.createUser').removeClass('hidden');
+    });
+  },
 
 
   styling: function() {
       var signIn = signIn;
+      var createUser = createUser;
       signIn = _.template(templates.signIn);
-      $('.wholethingy').html(signIn);
+      $('.wholethingy').html(signIn, createUser);
+      createUser = _.template(templates.createUser);
+      $('.signIn').html(createUser);
 
 
   },
