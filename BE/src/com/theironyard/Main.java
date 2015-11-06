@@ -14,17 +14,17 @@ public class Main {
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.execute("CREATE TABLE IF NOT EXISTS users " +
-                "(id IDENTITY, username VARCHAR, password VARCHAR, gender BOOLEAN, location VARCHAR, age INT, stereotype_name VARCHAR)");
+                "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_name VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS stereotypes " +
                 "(id IDENTITY, stereotype_name VARCHAR, attribute_key VARCHAR, attribute_value VARCHAR)");
     }
 
     // adds user to database
-    public static void insertUser(Connection conn, String username, String password, boolean gender, String location, int age, String stereotypeName) throws SQLException {
+    public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?)");
         stmt.setString(1, username);
         stmt.setString(2, password);
-        stmt.setBoolean(3, gender);
+        stmt.setString(3, gender);
         stmt.setString(4, location);
         stmt.setInt(5, age);
         stmt.setString(6, stereotypeName);
@@ -41,7 +41,7 @@ public class Main {
             user = new User();
             user.username = results.getString("username");
             user.password = results.getString("password");
-            user.gender = results.getBoolean("gender");
+            user.gender = results.getString("gender");
             user.location = results.getString("location");
             user.age = results.getInt("age");
             user.stereotype = selectStereotype(conn, results.getString("stereotype_name"));
@@ -58,7 +58,7 @@ public class Main {
             User user = new User();
             user.username = results.getString("username");
             user.password = results.getString("password");
-            user.gender = results.getBoolean("gender");
+            user.gender = results.getString("gender");
             user.location = results.getString("location");
             user.age = results.getInt("age");
             user.stereotype = selectStereotype(conn, results.getString("stereotype_name"));
@@ -281,19 +281,25 @@ public class Main {
                     Session session = request.session();
                     String username = session.attribute("username");
                     String password = request.queryParams("password");
-                    // request gender selection here
+                    String gender = request.queryParams("gender");
                     String location = request.queryParams("location");
-                    // request age here
+                    int age = Integer.valueOf(request.queryParams("age"));
                     String stereotypeName = request.queryParams("stereotypeName");
 
                     User temp = selectUser(conn, username);
 
-
-
                     if (temp == null) {
                         temp = new User();
                         temp.username = username;
-
+                        temp.password = password;
+                        temp.gender = gender;
+                        temp.location = location;
+                        temp.age = age;
+                        temp.stereotype = setStereotype(conn, stereotypeName);
+                        insertUser(conn, username, password, gender, location, age, stereotypeName);
+                    }
+                    else if (username.equals(temp.username) && password.equals(temp.password)) {
+                        response.redirect("logged-in.html");
                     }
 
                     return "";
