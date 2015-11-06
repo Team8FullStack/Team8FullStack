@@ -5,18 +5,30 @@ import jodd.json.JsonSerializer;
 import spark.Session;
 import spark.Spark;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
-
-
-
 public class Main {
 
-    //changes
+//    @Override
+//    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+//            throws ServletException, IOException {
+//        if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(request.getMethod())) {
+//            // CORS "pre-flight" request
+//            response.addHeader("Access-Control-Allow-Origin", "*");
+//            response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//            response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+//            response.addHeader("Access-Control-Max-Age", "1800");//30 min
+//        }
+//        filterChain.doFilter(request, response);
+//    }
 
     // creates tables
     public static void createTables(Connection conn) throws SQLException {
@@ -168,7 +180,7 @@ public class Main {
         Spark.init();
 
         Spark.get(
-                "/",
+                "/get-users",
                 ((request, response) -> {
                     JsonSerializer serializer = new JsonSerializer();
                     String json = serializer.serialize(selectUsers(conn));
