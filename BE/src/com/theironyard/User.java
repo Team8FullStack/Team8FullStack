@@ -6,10 +6,10 @@ package com.theironyard;
 public class User {
     String username;
     String password;
-    boolean gender;
+    String gender;
     String location;
     int age;
-    int stereotypeId;
+    // int stereotypeId; <- do i need this?
     Stereotype stereotype;
 
     public User() {
@@ -24,7 +24,7 @@ public class User {
         return password;
     }
 
-    public boolean isGender() {
+    public String isGender() {
         return gender;
     }
 
@@ -36,9 +36,9 @@ public class User {
         return age;
     }
 
-    public int getStereotypeId() {
-        return stereotypeId;
-    }
+//    public int getStereotypeId() {
+//        return stereotypeId;
+//    }
 
     public Stereotype getStereotype() {
         return stereotype;
