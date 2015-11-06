@@ -11,7 +11,6 @@ body {
   border-radius: 30px;
   padding: 20px 150px; }
 
-
 .username, .password, .submit, .age, .location {
   display: block;
   padding-top: 10px;
@@ -19,9 +18,14 @@ body {
   margin-top: 12px; }
 
 .btn-default {
-  margin-left: 8px;
+  margin-left: -4px;
   margin-top: 25px;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 10px; }
+
+.revealCreateUser a {
+  padding-top: 10px;
+  margin-left: 19px; }
 
 .col-md-12 {
   background-color: #D88A8A;
@@ -32,7 +36,7 @@ body {
   height: 600px;
   margin-left: 240px; }
   .col-md-8 .col-md-3 {
-    background-color: #f9f2e6;
+    background-color: red;
     height: 600px; }
   .col-md-8 .col-md-9 {
     background-color: #f9f2e6;

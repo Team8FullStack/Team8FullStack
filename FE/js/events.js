@@ -12,7 +12,7 @@ var events = {
         login: {
           $('.wholethingy').on('click', '.login', function(event){
             event.preventDefault();
-            var mainpage = mainpage;
+            // var mainpage = mainpage;
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
             });
@@ -26,11 +26,19 @@ var events = {
       event.preventDefault();
       $('.inputarea').addClass('hidden');
       $('.revealCreateUser').addClass('hidden');
-      var createUser = createUser;
+      // var createUser = createUser;
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '400px');
-    });
-  },
 
+  });
+},
 
+    enterSite: function (){
+
+         $('.wholethingy').on('click', '.signup', function (event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+        });
+     }
 };
