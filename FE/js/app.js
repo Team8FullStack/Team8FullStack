@@ -15,7 +15,7 @@ var app = {
           var mainpage = mainpage;
           mainpage = _.template(templates.mainpage);
           });
-    $('.revealCreateUser').on('click', function(event) {
+    $('body').on('click', '.revealCreateUser', function(event) {
       event.preventDefault();
       $('.signIn').addClass('hidden');
       $('.createUser').removeClass('hidden');
@@ -25,9 +25,9 @@ var app = {
 
   styling: function() {
       var signIn = signIn;
-      var createUser = createUser;
       signIn = _.template(templates.signIn);
       $('.wholethingy').html(signIn, createUser);
+      var createUser = createUser;
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser);
 
