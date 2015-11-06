@@ -4,13 +4,8 @@ $(document).ready(function(){
 
 var app = {
   init: function() {
-    app.events();
-    app.events();
     styles.signIn();
-  },
-
-  events: function() {
-    
+    events.login();
   },
 
 

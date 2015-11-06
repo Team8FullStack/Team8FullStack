@@ -19,12 +19,12 @@ var events = {
     });
   },
 
-  createUser: {
-    // $('body').on('click', '.revealCreateUser', function(event) {
-    //   event.preventDefault();
-    //   $('.signIn').addClass('hidden');
-    //   $('.createUser').removeClass('hidden');
-    // });
+  createUser: function (){
+    $('.signIn').on('click', 'revealCreateUser', function(event) {
+      event.preventDefault();
+      $('.inputarea').addClass('hidden');
+      $('.createUser').addClass('active-section');
+    });
   },
 
 
