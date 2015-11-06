@@ -2,7 +2,7 @@
 var get = {
   retrieveMatch: function() {
     $.ajax({
-      url: 'http://localhost:4567/',  //insert json reference
+      url: '/get-users',  //insert json reference
       method: 'GET',
       success: function(data) {
         console.log(data);
