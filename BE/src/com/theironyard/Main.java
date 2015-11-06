@@ -97,75 +97,42 @@ public class Main {
     }
 
     // can I use the SQL query from this method in the method above?
-    public static void setStereotype(Connection conn, String stereotypeName) throws SQLException {
+    public static Stereotype setStereotype(Connection conn, String stereotypeName) throws SQLException {
         Stereotype stereotype = new Stereotype();
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes " +
-                "WHERE stereotype_name = ? AND stereotype_key = ? ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        String[] attributes = {"Music", "Food", "Drink", "Hobby", "Style", "Hangout"};
+        stereotype.typeName = stereotypeName;
+        String[] attributes = {"Music", "Food", "Drink", "Hobby", "Style", "HangoutSpot"};
         for (String item : attributes) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes " +
+                    "WHERE stereotype_name = ? AND attribute_key = ? ORDER BY RAND() LIMIT 1");
+            stmt.setString(1, stereotypeName);
             stmt.setString(2, item);
             ResultSet results = stmt.executeQuery();
-
-            if (results.getString("attribute_key").equals("Music")) {
-                stereotype.music = results.getString("attribute_value");
-            }
-            if (results.getString("attribute_key").equals("Food")) {
-                stereotype.food = results.getString("attribute_value");
-            }
-            if (results.getString("attribute_key").equals("Drink")) {
-                stereotype.drink = results.getString("attribute_value");
-            }
-            if (results.getString("attribute_key").equals("Hobby")) {
-                stereotype.hobby = results.getString("attribute_value");
-            }
-            if (results.getString("attribute_key").equals("Style")) {
-                stereotype.style = results.getString("attribute_value");
-            }
-            if (results.getString("attribute_key").equals("Hangout")) {
-                stereotype.hangout = results.getString("attribute_value");
+            if (results.next()) {
+                if (item.equals("Music")) {
+                    stereotype.music = results.getString("attribute_value");
+                }
+                if (item.equals("Food")) {
+                    stereotype.food = results.getString("attribute_value");
+                }
+                if (item.equals("Drink")) {
+                    stereotype.drink = results.getString("attribute_value");
+                }
+                if (item.equals("Hobby")) {
+                    stereotype.hobby = results.getString("attribute_value");
+                }
+                if (item.equals("Style")) {
+                    stereotype.style = results.getString("attribute_value");
+                }
+                if (item.equals("HangoutSpot")) {
+                    stereotype.hangout = results.getString("attribute_value");
+                }
             }
         }
-    }
-
-    public static void musicGenerator(Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'Music' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
-    }
-
-    public static void foodGenerator (Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'Food' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
-    }
-
-    public static void drinkGenerator (Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'Drink' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
-    }
-
-    public static void hobbyGenerator (Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'Hobby' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
-    }
-
-    public static void styleGenerator (Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'Style' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
-    }
-
-    public static void hangoutGenerator (Connection conn, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes WHERE stereotype_name = ? AND attribute_type = 'HangoutSpot' ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, stereotypeName);
-        stmt.execute();
+        return stereotype;
     }
 
     public static void createStereotype(Connection conn, String name, String typeKey, String typeValue) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO stereotypes VALUES (NULL, ?, ?, ?");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO stereotypes VALUES (NULL, ?, ?, ?)");
         stmt.setString(1, name);
         stmt.setString(2, typeKey);
         stmt.setString(3, typeValue);
@@ -328,6 +295,8 @@ public class Main {
                         temp.username = username;
 
                     }
+
+                    return "";
                 })
         );
     }

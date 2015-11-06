@@ -16,6 +16,7 @@ public class MainTest {
     public Connection startConnection() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./test");
         Main.createTables(conn);
+        Main.createStereotypes(conn);
         return conn;
     }
 
@@ -34,5 +35,16 @@ public class MainTest {
         endConnection(conn);
 
         assertTrue(user != null);
+    }
+
+    @Test
+    public void testSetStereotype() throws SQLException {
+        Connection conn = startConnection();
+        Main.insertUser(conn, "Alex", "password", true, "Charleston, SC", 25, "Programmer");
+        Stereotype stereotype = Main.setStereotype(conn, "Hippie");
+        endConnection(conn);
+
+        System.out.println(stereotype);
+
     }
 }
