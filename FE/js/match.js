@@ -12,15 +12,5 @@ var get = {
       }
     });
   },
-  login: function() {
-    $.ajax({
-      url: '',  //insert json reference
-      method: 'GET',
-      success: function(data) {
-        _.each(data, function(currVal, idx, arr){
-          // check for user name here //
-        });
-      }
-    });
-  },
+  
 };
