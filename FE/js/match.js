@@ -14,10 +14,11 @@ var get = {
   },
   connect: function() {
     $.ajax({
-      url: '/',
+      url: 'http://localhost:4567/',
       method: 'GET',
+      dataType: 'JSONP',
       success: function(data) {
-        console.log(data);
+        console.log(data[0]);
       }
     });
   }
