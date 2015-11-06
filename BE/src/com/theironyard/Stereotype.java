@@ -4,8 +4,7 @@ package com.theironyard;
  * Created by alhanger on 11/5/15.
  */
 public class Stereotype {
-    int id;
-    String type;
+    String typeName;
     String food;
     String drink;
     String music;
@@ -17,12 +16,8 @@ public class Stereotype {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
+    public String getTypeName() {
+        return typeName;
     }
 
     public String getFood() {
