@@ -44,7 +44,7 @@ public class MainTest {
         User user = Main.selectUser(conn, "Alex");
         user.stereotype = Main.setStereotype(conn, "Programmer", "Male");
 
-        Stereotype temp = Main.selectStereotype(conn, user.stereotype.typeName, user.gender);
+        Stereotype temp = Main.selectStereotype(conn, user.stereotype.typeName);
 
         System.out.println(temp);
     }
