@@ -74,34 +74,34 @@ public class Main {
     }
 
     // probably don't need this method anymore
-//    public static Stereotype selectStereotype(Connection conn, String stereotypeName) throws SQLException {
-//        Stereotype stereotype = new Stereotype();
-//        stereotype.typeName = stereotypeName;
-//        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM stereotypes WHERE stereotype_name = ?");
-//        stmt.setString(1, stereotypeName);
-//        ResultSet results = stmt.executeQuery();
-//        while (results.next()) {
-//            if (results.getString("attribute_key").equals("Music")) {
-//                stereotype.music = results.getString("attribute_value");
-//            }
-//            if (results.getString("attribute_key").equals("Food")) {
-//                stereotype.food = results.getString("attribute_value");
-//            }
-//            if (results.getString("attribute_key").equals("Drink")) {
-//                stereotype.drink = results.getString("attribute_value");
-//            }
-//            if (results.getString("attribute_key").equals("Hobby")) {
-//                stereotype.hobby = results.getString("attribute_value");
-//            }
-//            if (results.getString("attribute_key").equals("Style")) {
-//                stereotype.style = results.getString("attribute_value");
-//            }
-//            if (results.getString("attribute_key").equals("HangoutSpot")) {
-//                stereotype.hangout = results.getString("attribute_value");
-//            }
-//        }
-//        return stereotype;
-//    }
+    public static Stereotype selectStereotype(Connection conn, String stereotypeName) throws SQLException {
+        Stereotype stereotype = new Stereotype();
+        stereotype.typeName = stereotypeName;
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM stereotypes WHERE stereotype_name = ?");
+        stmt.setString(1, stereotypeName);
+        ResultSet results = stmt.executeQuery();
+        while (results.next()) {
+            if (results.getString("attribute_key").equals("Music")) {
+                stereotype.music = results.getString("attribute_value");
+            }
+            if (results.getString("attribute_key").equals("Food")) {
+                stereotype.food = results.getString("attribute_value");
+            }
+            if (results.getString("attribute_key").equals("Drink")) {
+                stereotype.drink = results.getString("attribute_value");
+            }
+            if (results.getString("attribute_key").equals("Hobby")) {
+                stereotype.hobby = results.getString("attribute_value");
+            }
+            if (results.getString("attribute_key").equals("Style")) {
+                stereotype.style = results.getString("attribute_value");
+            }
+            if (results.getString("attribute_key").equals("HangoutSpot")) {
+                stereotype.hangout = results.getString("attribute_value");
+            }
+        }
+        return stereotype;
+    }
 
     // randomly generates stereotype fields based on stereotype selection
     public static Stereotype setStereotype(Connection conn, String stereotypeName, String gender) throws SQLException {
