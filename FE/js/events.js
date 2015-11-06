@@ -30,7 +30,20 @@ var events = {
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
       $('.createUser').on('submit', function () {
-        action
+        $.ajax({
+            method:'POST',
+            action: '/create-user',
+            data: userData,
+            success: function(data){
+              page.currUser = data._id;
+              $('input[name="username"]').val('');
+              $('input[name="age"]').val('');
+              $('input[name="location"]').val('');
+              $('input[name="password"]').val('');
+              $('select[class="gender"]').val('');
+              $('select[class="stereotype"]').val('');
+            }
+          });
       });
     });
   },

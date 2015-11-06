@@ -14,12 +14,12 @@ signIn: [
 
 createUser: [
 "<div class='createUser'>",
-"<select name='gender' class='selectpicker'>",
+"<select name='gender' class='gender'>",
 "<option>select your gender</option>",
-"<option class='male'>Male</option>",
-"<option class='female'>Female</option>",
+"<option class='gender'>Male</option>",
+"<option class='gender'>Female</option>",
 "</select>",
-"<select name='stereotypeName' class='selectpicker'>",
+"<select name='stereotypeName' class='stereotype'>",
 "<option>choose your Stereotype</option>",
 "<option>Jock</option>",
 "<option>Hippie</option>",
