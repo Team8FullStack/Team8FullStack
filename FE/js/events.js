@@ -1,11 +1,5 @@
 var events = {
-  // login: {
-  //   // $('.wholethingy').on('click', '.login', function(event){
-  //   //   event.preventDefault();
-  //   //   var mainpage = mainpage;
-  //   //   mainpage = _.template(templates.mainpage);
-  //   //   });
-  //   },
+
 
   login: function() {
     $.ajax({
@@ -15,6 +9,14 @@ var events = {
         _.each(data, function(currVal, idx, arr){
           // check for user name here //
         });
+        login: {
+          $('.wholethingy').on('click', '.login', function(event){
+            event.preventDefault();
+            var mainpage = mainpage;
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+            });
+          }
       }
     });
   },

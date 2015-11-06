@@ -12,5 +12,13 @@ var get = {
       }
     });
   },
-  
+  connect: function() {
+    $.ajax({
+      url: '/',
+      method: 'GET',
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
 };
