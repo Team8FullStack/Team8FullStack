@@ -11,7 +11,8 @@ body {
   border-radius: 30px;
   padding: 20px 150px; }
 
-.username, .password {
+
+.username, .password, .submit, .age, .location {
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;

@@ -1,5 +1,6 @@
 package com.theironyard;
 
+import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 import spark.Session;
 import spark.Spark;
@@ -8,13 +9,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
+
+
+
 public class Main {
+
+    //changes
 
     // creates tables
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.execute("CREATE TABLE IF NOT EXISTS users " +
-                "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_name VARCHAR)");
+                "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_json VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS stereotypes " +
                 "(id IDENTITY, stereotype_name VARCHAR, attribute_key VARCHAR, attribute_value VARCHAR)");
     }
@@ -22,18 +30,21 @@ public class Main {
     // adds user to database
     public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?)");
+        JsonSerializer serializer = new JsonSerializer();
+        Stereotype stereotype = setStereotype(conn, stereotypeName);
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, gender);
         stmt.setString(4, location);
         stmt.setInt(5, age);
-        stmt.setString(6, stereotypeName);
+        stmt.setString(6, serializer.serialize(stereotype));
         stmt.execute();
     }
 
     // pulls user from database
     public static User selectUser(Connection conn, String username) throws SQLException {
         User user = null;
+        JsonParser parser = new JsonParser();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE username = ?");
         stmt.setString(1, username);
         ResultSet results = stmt.executeQuery();
@@ -44,13 +55,14 @@ public class Main {
             user.gender = results.getString("gender");
             user.location = results.getString("location");
             user.age = results.getInt("age");
-            user.stereotype = selectStereotype(conn, results.getString("stereotype_name"));
+            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
         }
         return user;
     }
 
     // pulls ALL users from database
     public static ArrayList<User> selectUsers(Connection conn) throws SQLException {
+        JsonParser parser = new JsonParser();
         ArrayList<User> users = new ArrayList<>();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users");
         ResultSet results = stmt.executeQuery();
@@ -61,12 +73,13 @@ public class Main {
             user.gender = results.getString("gender");
             user.location = results.getString("location");
             user.age = results.getInt("age");
-            user.stereotype = selectStereotype(conn, results.getString("stereotype_name"));
+            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
             users.add(user);
         }
         return users;
     }
 
+    // probably don't need this method anymore
     public static Stereotype selectStereotype(Connection conn, String stereotypeName) throws SQLException {
         Stereotype stereotype = new Stereotype();
         stereotype.typeName = stereotypeName;
@@ -89,14 +102,14 @@ public class Main {
             if (results.getString("attribute_key").equals("Style")) {
                 stereotype.style = results.getString("attribute_value");
             }
-            if (results.getString("attribute_key").equals("Hangout")) {
+            if (results.getString("attribute_key").equals("HangoutSpot")) {
                 stereotype.hangout = results.getString("attribute_value");
             }
         }
         return stereotype;
     }
 
-    // can I use the SQL query from this method in the method above?
+    // randomly generates stereotype fields based on stereotype selection
     public static Stereotype setStereotype(Connection conn, String stereotypeName) throws SQLException {
         Stereotype stereotype = new Stereotype();
         stereotype.typeName = stereotypeName;
@@ -129,6 +142,91 @@ public class Main {
             }
         }
         return stereotype;
+    }
+
+    public static void removeUser (Connection conn, String username) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("DELETE * FROM users WHERE username = ?");
+        stmt.setString(1, username);
+        stmt.execute();
+    }
+
+    public static void main(String[] args) throws SQLException {
+	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
+        createTables(conn);
+
+        if (selectUsers(conn).size() == 0) {
+            createStereotypes(conn);
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+        }
+
+        insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
+        insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
+        insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
+        insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
+
+        Spark.externalStaticFileLocation("FE");
+        Spark.init();
+
+        Spark.get(
+                "/",
+                ((request, response) -> {
+                    JsonSerializer serializer = new JsonSerializer();
+                    String json = serializer.serialize(selectUsers(conn));
+                    return json;
+                })
+        );
+        Spark.post(
+                "/create-user",
+                ((request, response) -> {
+                    String username = request.queryParams("username");
+                    String password = request.queryParams("password");
+                    String gender = request.queryParams("gender");
+                    String location = request.queryParams("location");
+                    int age = Integer.valueOf(request.queryParams("age"));
+                    String stereotypeName = request.queryParams("stereotypeName");
+
+                    User temp = selectUser(conn, username);
+
+                    if (temp == null) {
+                        temp = new User();
+                        temp.username = username;
+                        temp.password = password;
+                        temp.gender = gender;
+                        temp.location = location;
+                        temp.age = age;
+                        temp.stereotype = setStereotype(conn, stereotypeName);
+                        insertUser(conn, username, password, gender, location, age, stereotypeName);
+                    }
+                    else if (username.equals(temp.username) && password.equals(temp.password)) {
+                        response.redirect("/logged-in");
+                    }
+
+                    Session session = request.session();
+                    session.attribute("username", username);
+
+                    return "";
+                })
+        );
+        Spark.post(
+                "/delete-user",
+                ((request, response) -> {
+                    Session session = request.session();
+                    String username = session.attribute("username");
+
+                    removeUser(conn, username);
+                    response.redirect("/");
+
+                    return "";
+                })
+        );
+        Spark.post(
+                "/logout",
+                ((request, response) -> {
+                    Session session = request.session();
+                    session.invalidate();
+                    return "";
+                })
+        );
     }
 
     public static void createStereotype(Connection conn, String name, String typeKey, String typeValue) throws SQLException {
@@ -253,62 +351,5 @@ public class Main {
         createStereotype(conn, "Hippie", "Hobby", "Taking Drugs");
         createStereotype(conn, "Hippie", "Style", "Naked");
         createStereotype(conn, "Hippie", "HangoutSpot", "Mother Earth");
-    }
-
-    public static void main(String[] args) throws SQLException {
-	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
-        createTables(conn);
-
-        if (selectUsers(conn).size() == 0) {
-            createStereotypes(conn);
-            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
-        }
-
-        insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
-        insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
-        insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
-        insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
-
-        Spark.externalStaticFileLocation("FE");
-        Spark.init();
-
-        Spark.get(
-                "/",
-                ((request, response) -> {
-                    JsonSerializer serializer = new JsonSerializer();
-                    String json = serializer.serialize(selectUsers(conn));
-                    return json;
-                })
-        );
-        Spark.post(
-                "/create-user",
-                ((request, response) -> {
-                    Session session = request.session();
-                    String username = session.attribute("username");
-                    String password = request.queryParams("password");
-                    String gender = request.queryParams("gender");
-                    String location = request.queryParams("location");
-                    int age = Integer.valueOf(request.queryParams("age"));
-                    String stereotypeName = request.queryParams("stereotypeName");
-
-                    User temp = selectUser(conn, username);
-
-                    if (temp == null) {
-                        temp = new User();
-                        temp.username = username;
-                        temp.password = password;
-                        temp.gender = gender;
-                        temp.location = location;
-                        temp.age = age;
-                        temp.stereotype = setStereotype(conn, stereotypeName);
-                        insertUser(conn, username, password, gender, location, age, stereotypeName);
-                    }
-                    else if (username.equals(temp.username) && password.equals(temp.password)) {
-                        response.redirect("logged-in.html");
-                    }
-
-                    return "";
-                })
-        );
     }
 }

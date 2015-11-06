@@ -21,12 +21,15 @@ var events = {
     });
   },
 
-  createUser: {
-    // $('body').on('click', '.revealCreateUser', function(event) {
-    //   event.preventDefault();
-    //   $('.signIn').addClass('hidden');
-    //   $('.createUser').removeClass('hidden');
-    // });
+  createUser: function (){
+    $('body').on('click', '.revealCreateUser', function(event) {
+      event.preventDefault();
+      $('.inputarea').addClass('hidden');
+      $('.revealCreateUser').addClass('hidden');
+      var createUser = createUser;
+      createUser = _.template(templates.createUser);
+      $('.signIn').html(createUser).css('height', '400px');
+    });
   },
 
 

@@ -21,10 +21,9 @@ createUser: [
 "</select>",
 "<input type='text' class='age' placeholder='enter your age'>",
 "<input type='text' class='location' placeholder='enter your location'>",
-"<div class='inputarea'>",
 "<input type='text' class='username' placeholder='enter username'>",
 "<input type='text' class='password' placeholder='enter password'>",
-"<button type='submit' class='signup' name='signup'>Submit</button>",
+"<button type='submit' class='signup btn btn-default' name='signup'>Submit</button>",
 "</div>"
 ].join(""),
 
