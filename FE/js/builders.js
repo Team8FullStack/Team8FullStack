@@ -4,7 +4,7 @@ signIn: [
 "<div class='signIn'>",
 "<div class='inputarea'>",
 "<input type='text' class='username' placeholder='enter username'>",
-"<input type='text' class='password' placeholder='enter password'>",
+"<input type='password' class='password' placeholder='enter password'>",
 "<button type='submit' class='login btn btn-default' name='submit'>Submit</button>",
 "</div>",
 "<div class='revealCreateUser'>",
