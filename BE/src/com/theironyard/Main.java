@@ -261,8 +261,13 @@ public class Main {
 
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
-            insertUser(conn, "Alex", "password", true, "Charleston, SC", 25, "Programmer");
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
         }
+
+        insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
+        insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
+        insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
+        insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
 
         Spark.externalStaticFileLocation("FE");
         Spark.init();
