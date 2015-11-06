@@ -9,7 +9,7 @@ body {
   border-radius: 30px;
   padding: 90px 150px;
 }
-.username, .password , .submit {
+.username, .password , .submit, .age, .location {
   display: block;
   padding: 10px;
   margin-top: 12px;
@@ -43,8 +43,4 @@ margin-left: 240px;
   .col-md-9 {
     background-color: #f9f2e6;
 height: 600px; }
-}
-
-.active-section {
-  display: block;
 }

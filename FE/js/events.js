@@ -1,11 +1,5 @@
 var events = {
-  // login: {
-  //   // $('.wholethingy').on('click', '.login', function(event){
-  //   //   event.preventDefault();
-  //   //   var mainpage = mainpage;
-  //   //   mainpage = _.template(templates.mainpage);
-  //   //   });
-  //   },
+
 
   login: function() {
     $.ajax({
@@ -15,15 +9,26 @@ var events = {
         _.each(data, function(currVal, idx, arr){
           // check for user name here //
         });
+        login: {
+          $('.wholethingy').on('click', '.login', function(event){
+            event.preventDefault();
+            var mainpage = mainpage;
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+            });
+          }
       }
     });
   },
 
   createUser: function (){
-    $('.signIn').on('click', 'revealCreateUser', function(event) {
+    $('body').on('click', '.revealCreateUser', function(event) {
       event.preventDefault();
       $('.inputarea').addClass('hidden');
-      $('.createUser').addClass('active-section');
+      $('.revealCreateUser').addClass('hidden');
+      var createUser = createUser;
+      createUser = _.template(templates.createUser);
+      $('.signIn').html(createUser).css('height', '400px');
     });
   },
 

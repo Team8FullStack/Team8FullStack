@@ -6,7 +6,7 @@ var app = {
   init: function() {
     styles.signIn();
     events.login();
+    events.createUser();
   },
-
 
 };
