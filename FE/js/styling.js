@@ -5,6 +5,6 @@ var styles = {
   },
   createUser: function() {
     createUser = _.template(templates.createUser);
-    $('.wholethingy').html(createUser); 
+    $('.wholethingy').html(createUser);
   }
 };
