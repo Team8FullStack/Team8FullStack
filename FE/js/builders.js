@@ -4,7 +4,7 @@ signIn: [
 "<div class='signIn'>",
 "<div class='inputarea'>",
 "<input type='text' class='username' placeholder='enter username'>",
-"<input type='text' class='password' placeholder='enter password'>",
+"<input type='password' class='password' placeholder='enter password'>",
 "<button type='submit' class='login btn btn-default' name='submit'>Submit</button>",
 "</div>",
 "<div class='revealCreateUser'>",
@@ -14,17 +14,41 @@ signIn: [
 
 createUser: [
 "<div class='createUser'>",
-"<select class='selectpicker'>",
+"<select name='gender' class='selectpicker'>",
 "<option>select</option>",
 "<option>Male</option>",
 "<option>Female</option>",
 "</select>",
-"<input type='text' class='age' placeholder='enter your age'>",
-"<input type='text' class='location' placeholder='enter your location'>",
-"<input type='text' class='username' placeholder='enter username'>",
-"<input type='text' class='password' placeholder='enter password'>",
+"<input type='text' class='age' name='age' placeholder='enter your age'>",
+"<input type='text' class='location' name='location' placeholder='enter your location'>",
+"<input type='text' class='username' name='username' placeholder='enter username'>",
+"<input type='text' class='password' name='password' placeholder='enter password'>",
 "<button type='submit' class='signup' name='signup'>Submit</button>",
 "</div>"
+].join(""),
+
+chooseTypeMale: [
+  "<select name='stereotypeName' class='selectpicker'>",
+  "<option>Jock</option>",
+  "<option>Hippie</option>",
+  "<option>Skater</option>",
+  "<option>Programmer</option>",
+  "<option>Crossfit</option>",
+  "<option>Hipster</option>",
+  "<option>Frat Bro</option>",
+  "</select>",
+].join(""),
+
+chooseTypeFemale: [
+  "<select name='stereotypeName' class='selectpicker'>",
+  "<option>Jock</option>",
+  "<option>Hippie</option>",
+  "<option>Skater</option>",
+  "<option>Programmer</option>",
+  "<option>Crossfit</option>",
+  "<option>Hipster</option>",
+  "<option>Sorority Girl</option>",
+  "</select>",
 ].join(""),
 
 mainpage: [

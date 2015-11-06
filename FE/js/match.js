@@ -2,15 +2,14 @@
 var get = {
   retrieveMatch: function() {
     $.ajax({
-      url: '',  //insert json reference
+      url: '/get-users',  //insert json reference
       method: 'GET',
       success: function(data) {
-        //use template to print result to DOM here //
+        console.log(data);
       },
       fail: function() {
         console.log("error retrieving match");
       }
     });
   },
-  
 };
