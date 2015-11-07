@@ -1,11 +1,12 @@
 var events = {
 
   login: function validateForm() {
-    var un = document.loginform.username.value;
-    var pw = document.loginform.password.value;
+    var un = loginform.username;
+    var pw = loginform.password;
     var username = "username";
     var password = "password";
-    if ((un == username) && (pw == password)) {
+    if ((un === username) && (pw === password)) {
+      console.log('success');
         return true;
     }
     else {
@@ -46,5 +47,17 @@ var events = {
     });
   },
 
+  choseGender: function () {
 
+  },
+
+
+    enterSite: function (){
+
+         $('.wholethingy').on('click', '.signup', function (event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+        });
+     }
 };
