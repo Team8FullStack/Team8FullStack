@@ -11,6 +11,7 @@ var app = {
     styles.signIn();
     events.login();
     events.createUser();
+    events.enterSite();
   },
 
 };
