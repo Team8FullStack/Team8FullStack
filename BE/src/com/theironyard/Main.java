@@ -12,8 +12,6 @@ import java.util.HashMap;
 
 public class Main {
 
-    //changes
-
     // creates tables
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -172,6 +170,38 @@ public class Main {
                     return json;
                 })
         );
+        Spark.get(
+                "/get-user",
+                ((request, response) -> {
+                    Session session = request.session();
+                    String username = session.attribute("username");
+
+                    User temp = selectUser(conn, username);
+
+                    JsonSerializer serializer = new JsonSerializer();
+                    String json = serializer.serialize(temp);
+
+                    return json;
+                })
+        );
+        Spark.post(
+                "/login",
+                ((request, response) -> {
+                    String username = request.queryParams("username");
+                    String password = request.queryParams("password");
+
+                    User temp = selectUser(conn, username);
+
+                    if (temp == null || !password.equals(temp.password)) {
+                        Spark.halt(403);
+                    }
+
+                    Session session = request.session();
+                    session.attribute("username", username);
+
+                    return "";
+                })
+        );
         Spark.post(
                 "/create-user",
                 ((request, response) -> {
@@ -182,21 +212,8 @@ public class Main {
                     int age = Integer.valueOf(request.queryParams("age"));
                     String stereotypeName = request.queryParams("stereotypeName");
 
-                    User temp = selectUser(conn, username);
 
-                    if (temp == null) {
-                        temp = new User();
-                        temp.username = username;
-                        temp.password = password;
-                        temp.gender = gender;
-                        temp.location = location;
-                        temp.age = age;
-                        temp.stereotype = setStereotype(conn, stereotypeName, gender);
-                        insertUser(conn, username, password, gender, location, age, stereotypeName);
-                    }
-                    else if (username.equals(temp.username) && password.equals(temp.password)) {
-                        response.redirect("/logged-in");
-                    }
+                    insertUser(conn, username, password, gender, location, age, stereotypeName);
 
                     Session session = request.session();
                     session.attribute("username", username);
@@ -211,7 +228,6 @@ public class Main {
                     String username = session.attribute("username");
 
                     removeUser(conn, username);
-                    response.redirect("/get-users");
 
                     return "";
                 })
