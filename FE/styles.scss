@@ -1,5 +1,14 @@
 body {
   background-color: #C5CFC6;
+  font-family: 'Quando';
+}
+.title {
+  color: white;
+  font-size: 70px;
+  text-align: center;
+  margin-top: 164px;
+  margin-bottom: -144px;
+
 }
 .signIn {
   background-color: #f9f2e6;
@@ -24,6 +33,7 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 12px;
+  width: 100%;
   // margin-left: 10px;
 
 }
@@ -34,13 +44,22 @@ body {
   margin-top: 25px;
   width: 100%;
   margin-bottom: 10px;
+  color: #D88A8A;
 
 }
 .revealCreateUser {
   a {
     padding-top: 10px;
-    margin-left: 19px;
+    margin-left: 28px;
+    color: #D88A8A;
   }
+}
+.selectpicker {
+  width: 100%;
+
+}
+.createUser {
+  margin-top: 30px;
 }
 
 .col-md-12 {

@@ -1,6 +1,7 @@
 var templates = {
 
 signIn: [
+"<h1 class='title'>ster·e·o·type</h1>",
 "<div class='signIn'>",
 "<div class='inputarea'>",
 "<input type='text' class='username' placeholder='enter username'>",
@@ -21,19 +22,19 @@ createUser: [
 "</select>",
 "<select name='stereotypeName' class='selectpicker'>",
 "<option>choose your Stereotype</option>",
-"<option>Jock</option>",
+"<option></option>",
 "<option>Hippie</option>",
 "<option>Skater</option>",
 "<option>Programmer</option>",
 "<option>Crossfit</option>",
 "<option>Hipster</option>",
-"<option>Frat Bro / Sorority Sis</option>",
+"<option>Frat Star / Sorostitute</option>",
 "</select>",
 "<input type='text' class='age' name='age' placeholder='enter your age'>",
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
-"<input type='text' class='password' name='password' placeholder='enter password'>",
-"<button type='submit' class='signup' name='signup'>Signup for Stereotype Dating!</button>",
+"<input type='password' class='password' name='password' placeholder='enter password'>",
+"<button type='submit' class='signup btn btn-default' name='signup'>Start Stereotyping!</button>",
 "</div>"
 ].join(""),
 
