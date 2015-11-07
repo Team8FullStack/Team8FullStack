@@ -1,28 +1,17 @@
 var events = {
 
-  login: function() {
-      var username = $('input[name="username"]').val();
-      var password = $('input[name="password"]').val();
-      $.ajax({
-        url: '/get-users',
-        method: 'GET',
-        success: function(data) {
-          userData = JSON.parse(data);
-          _.each(userData, function(currVal, idx, arr) {
-            if (currVal.username === username && currVal.password === password) {
-              console.log("success");
-              $('.wholethingy').on('click', '.login', function(event) {
-                event.preventDefault();
-                var mainpage = mainpage;
-                mainpage = _.template(templates.mainpage);
-                $('.wholethingy').html(mainpage);
-            });
-          } else {
-            console.log("login failed");
-          }
-        });
-      }
-    });
+  login: function validateForm() {
+    var un = document.loginform.username.value;
+    var pw = document.loginform.password.value;
+    var username = "username";
+    var password = "password";
+    if ((un == username) && (pw == password)) {
+        return true;
+    }
+    else {
+        alert ("Login was unsuccessful, please check your username and password");
+        return false;
+    }
   },
 
   createUser: function (){

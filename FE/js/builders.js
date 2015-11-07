@@ -2,11 +2,13 @@ var templates = {
 
 signIn: [
 "<div class='signIn'>",
+"<form name='loginform' onSubmit='return validateForm();' action='/get-users' method='post'>",
 "<div class='inputarea'>",
 "<input type='text' class='username' placeholder='enter username'>",
 "<input type='password' class='password' placeholder='enter password'>",
 "<button type='submit' class='login btn btn-default' name='submit'>Login</button>",
 "</div>",
+"</form>",
 "<div class='revealCreateUser'>",
 "<a href=''>Create New User</a>",
 "</div>"
