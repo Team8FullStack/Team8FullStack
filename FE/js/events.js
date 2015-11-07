@@ -3,12 +3,24 @@ var events = {
 
   login: function() {
     $.ajax({
-      url: '',  //insert json reference
-      method: 'GET',
+      url: '/login',  //insert json reference
+      method: 'POST',
       success: function(data) {
-        _.each(data, function(currVal, idx, arr){
-          // check for user name here //
-        });
+        // _.each(data, function(currVal, idx, arr){
+        //   // check for user name here //
+        // });
+      //  $('body').on('click', '.username',function(e) {
+      //     e.preventDefault();
+      //     var userNameInput = $(this)('input[name="username"]').val();
+      //     var passWordInput = $(this).siblings('input[name="password"]').val();
+      //     var data ={
+      //       username: userNameInput,
+      //       password: passWordInput,
+       //
+      //     };
+      //   });
+
+
         login: {
           $('.wholethingy').on('click', '.login', function(event){
             event.preventDefault();
@@ -20,6 +32,7 @@ var events = {
       }
     });
   },
+
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
