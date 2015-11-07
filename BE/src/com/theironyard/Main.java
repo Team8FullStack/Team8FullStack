@@ -12,8 +12,6 @@ import java.util.HashMap;
 
 public class Main {
 
-    //changes
-
     // creates tables
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
