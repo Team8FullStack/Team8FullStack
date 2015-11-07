@@ -28,10 +28,18 @@ var events = {
       $('.revealCreateUser').addClass('hidden');
       // var createUser = createUser;
       createUser = _.template(templates.createUser);
-      $('.signIn').html(createUser).css('height', '400px');
 
-  });
-},
+      $('.signIn').html(createUser).css('height', '450px');
+      $('.createUser').on('submit', function () {
+
+      });
+    });
+  },
+
+  choseGender: function () {
+
+  },
+
 
     enterSite: function (){
 
