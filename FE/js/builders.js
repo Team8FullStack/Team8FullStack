@@ -33,7 +33,7 @@ createUser: [
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='text' class='password' name='password' placeholder='enter password'>",
-"<button type='submit' class='signup' name='signup'>Signup for Stereotype Dating!</button>",
+"<button type='submit' class='signup' name='signup' action={/create-user}>Signup for Stereotype Dating!</button>",
 "</div>"
 ].join(""),
 

@@ -29,28 +29,30 @@ var events = {
       var createUser = createUser;
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
-      $('.createUser').on('submit', function () {
-        $.ajax({
-            method:'POST',
-            action: '/create-user',
-            data: userData,
-            success: function(data){
-              page.currUser = data._id;
-              $('input[name="username"]').val('');
-              $('input[name="age"]').val('');
-              $('input[name="location"]').val('');
-              $('input[name="password"]').val('');
-              $('select[class="gender"]').val('');
-              $('select[class="stereotype"]').val('');
-            }
-          });
-      });
     });
   },
 
-  choseGender: function () {
-
-  }
+  submitNewUser: function () {
+    // $('.createUser').on('submit', function (event) {
+    //   event.preventDefault();
+    //   // app.createUser.getElementsByClassName('signup')onsubmit();
+    //
+    //   $.ajax({
+    //       method:'POST',
+    //       url: '/create-user',
+    //       data: userData,
+    //       success: function(data){
+    //         page.currUser = data._id;
+    //         $('input[name="username"]').val('');
+    //         $('input[name="age"]').val('');
+    //         $('input[name="location"]').val('');
+    //         $('input[name="password"]').val('');
+    //         $('select[class="gender"]').val('');
+    //         $('select[class="stereotype"]').val('');
+    //       }
+    //     });
+    // });
+  },
 
 
 };
