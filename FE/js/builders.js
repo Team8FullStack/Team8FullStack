@@ -8,7 +8,7 @@ signIn: [
 "<input type='password' class='password' name='password' placeholder='enter password'>",
 "<button type='submit' class='login btn btn-default' name='submit' onclick='events.login()'>Login</button>",
 "</div>",
-"<div class='revealCreateUser'>",
+"<div class='revealCreateUser' onclick='events.createUser()'>",
 "<a href=''>Create New User</a>",
 "</div>"
 ].join(""),
