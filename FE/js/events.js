@@ -1,36 +1,29 @@
 var events = {
 
 
-  login: function() {
-    $.ajax({
-      url: '',  //insert json reference
-      method: 'GET',
-      success: function(data) {
-        _.each(data, function(currVal, idx, arr){
-          // check for user name here //
-        });
-      //  $('body').on('click', '.username',function(e) {
-      //     e.preventDefault();
-      //     var userNameInput = $(this)('input[name="username"]').val();
-      //     var passWordInput = $(this).siblings('input[name="password"]').val();
-      //     var data ={
-      //       username: userNameInput,
-      //       password: passWordInput,
-       //
-      //     };
-      //   });
 
 
-        login: {
-          $('.wholethingy').on('click', '.login', function(event){
-            event.preventDefault();
-             // mainpage = mainpage;
-            mainpage = _.template(templates.mainpage);
-            $('.wholethingy').html(mainpage);
-            });
-          }
-      }
-    });
+
+  login: function validateForm() {
+    var un = loginform.username;
+    var pw = loginform.password;
+    var username = "username";
+    var password = "password";
+    if ((un === username) && (pw === password)) {
+      console.log('success');
+        return true;
+    }
+    else {
+        alert ("Login was unsuccessful, please check your username and password");
+        return false;
+    }
+
+    $('.wholethingy').on('click', '.login', function(event){
+      event.preventDefault();
+      mainpage = _.template(templates.mainpage);
+      $('.wholethingy').html(mainpage);
+      });
+
   },
 
 
@@ -39,13 +32,30 @@ var events = {
       event.preventDefault();
       $('.inputarea').addClass('hidden');
       $('.revealCreateUser').addClass('hidden');
-      // var createUser = createUser;
+      var createUser = createUser;
       createUser = _.template(templates.createUser);
-
       $('.signIn').html(createUser).css('height', '450px');
-      $('.createUser').on('submit', function () {
+    });
+  },
 
-      });
+  submitNewUser: function () {
+    $('.createUser').on('submit', function (event) {
+      event.preventDefault();
+      // var =
+      $.ajax({
+          method:'POST',
+          url: '/create-user',
+          data: userData,
+          success: function(data){
+            page.currUser = data._id;
+            $('input[name="username"]').val('');
+            $('input[name="age"]').val('');
+            $('input[name="location"]').val('');
+            $('input[name="password"]').val('');
+            $('select[class="gender"]').val('');
+            $('select[class="stereotype"]').val('');
+          }
+        });
     });
   },
 

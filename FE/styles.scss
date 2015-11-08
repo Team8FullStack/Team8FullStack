@@ -64,6 +64,7 @@ body {
   background-color:#D88A8A;
   margin-top: 15px;
 }
+
 .createUser {
   margin-top: 30px;
 }
@@ -90,9 +91,8 @@ height: 600px; }
 }
 .matches {
   height: 31%;
-  // overflow: scroll;
-
 }
+
 .match1, .match2 , .match3 {
   border: 2px solid white;
   width: 100%;
@@ -116,4 +116,10 @@ height: 600px; }
   margin-right: auto;
   margin-top: 30px;
   border-top: 3px solid white;
+}
+h2 {
+  color: #f9f2e6;
+  font-size: 31px;
+  text-align: center;
+  margin-top: 27px;
 }

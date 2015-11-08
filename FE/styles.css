@@ -88,3 +88,9 @@ body {
   margin-right: auto;
   margin-top: 30px;
   border-top: 3px solid white; }
+
+h2 {
+  color: #f9f2e6;
+  font-size: 31px;
+  text-align: center;
+  margin-top: 27px; }

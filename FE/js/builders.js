@@ -3,11 +3,13 @@ var templates = {
 signIn: [
 "<h1 class='title'>ster·e·o·type</h1>",
 "<div class='signIn'>",
+"<form name='loginform' onSubmit='return validateForm();' action='/get-users' method='post'>",
 "<div class='inputarea'>",
-"<input type='text' name= 'username' class='username' placeholder='enter username'>",
-"<input type='password' name= 'password' class='password' placeholder='enter password'>",
-"<button type='submit' class='login btn btn-default' name='submit'>Submit</button>",
+"<input type='text' class='username' placeholder='enter username'>",
+"<input type='password' class='password' placeholder='enter password'>",
+"<button type='submit' class='login btn btn-default' name='submit'>Login</button>",
 "</div>",
+"</form>",
 "<div class='revealCreateUser'>",
 "<a href=''>Create New User</a>",
 "</div>"
@@ -15,10 +17,10 @@ signIn: [
 
 createUser: [
 "<div class='createUser'>",
-"<select name='gender' class='selectpicker'>",
+"<select name='gender' class='gender'>",
 "<option>select your gender</option>",
-"<option class='male'>Male</option>",
-"<option class='female'>Female</option>",
+"<option class='gender'>Male</option>",
+"<option class='gender'>Female</option>",
 "</select>",
 "<input type='text' class='age' name='age' placeholder='enter your age'>",
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
@@ -40,7 +42,9 @@ createUser: [
 
 mainpage: [
 "<div class='mainpage'>",
-"<header class='col-md-12'></header>",
+"<header class='col-md-12'>",
+"<h2>ster·e·o·type</h2>",
+"</header>",
 "<div class='col-md-8'>",
 "<div class='col-md-3'>",
 "<section class='matches'>",
