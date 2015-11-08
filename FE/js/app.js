@@ -9,8 +9,7 @@ var app = {
   init: function() {
     styles.signIn();
     // events.login();
-    // events.createUser();
-    events.submitNewUser();
+    // events.submitNewUser();
     events.enterSite();
   },
 
