@@ -28,11 +28,6 @@ var events = {
 
 },
 
-    // else {
-    //     alert ("Login was unsuccessful, please check your username and password");
-    //     return false;
-    // }
-
 
 
 
