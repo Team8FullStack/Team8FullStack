@@ -9,7 +9,7 @@
 var get = {
   allMatches: function() {
     $.ajax({
-      url: '/get-users',  //insert json reference
+      url: '/get-users',  
       method: 'GET',
       success: function(data) {
         Mdata = JSON.parse(data);
