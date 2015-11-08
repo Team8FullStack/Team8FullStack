@@ -4,27 +4,32 @@ var events = {
 
 
 
-  login: function validateForm() {
-    var un = loginform.username;
-    var pw = loginform.password;
-    var username = "username";
-    var password = "password";
-    if ((un === username) && (pw === password)) {
-      console.log('success');
-        return true;
-    }
-    else {
-        alert ("Login was unsuccessful, please check your username and password");
-        return false;
-    }
+  login: function() {
 
-    $('.wholethingy').on('click', '.login', function(event){
-      event.preventDefault();
-      mainpage = _.template(templates.mainpage);
-      $('.wholethingy').html(mainpage);
-      });
+    $.ajax({
+      url: "/login",
+      method: 'POST',
+      success: function(data){
+          console.log('success');
+          $('.wholethingy').on('click', '.login', function(event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+            });
+      },
+      error: function(data){
+        console.log(data);
+      }
+    });
 
-  },
+},
+
+    // else {
+    //     alert ("Login was unsuccessful, please check your username and password");
+    //     return false;
+    // }
+
+
 
 
   createUser: function (){
@@ -36,6 +41,7 @@ var events = {
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
     });
+
   },
 
   submitNewUser: function () {
@@ -47,7 +53,8 @@ var events = {
           url: '/create-user',
           data: userData,
           success: function(data){
-            page.currUser = data._id;
+            window.userData = JSON.parse(data);
+            app.currUser = data._id;
             $('input[name="username"]').val('');
             $('input[name="age"]').val('');
             $('input[name="location"]').val('');
@@ -58,6 +65,25 @@ var events = {
         });
     });
   },
+
+  // submitExistingUser: function () {
+  //   $('.login').on('submit', function (event) {
+  //     event.preventDefault();
+  //     // var =
+  //     $.ajax({
+  //         method:'GET',
+  //         url: '/get-users',
+  //         data: userData,
+  //         success: function(data){
+  //           window.userData = JSON.parse(data);
+  //           app.currUser = data._id;
+  //           $('input[name="username"]').val('');
+  //           $('input[name="password"]').val('');
+  //         }
+  //       });
+  //   });
+  // },
+
 
   choseGender: function () {
 
