@@ -1,23 +1,29 @@
 var events = {
 
-// form validation care of Karlen Kishmiryan at stackoverflow:
-// http://stackoverflow.com/questions/23134756/simple-javascript-login-form-validation
-  login: function validateForm(data) {
-    var un = templates.signIn[loginform.username];
-    var pw = templates.signIn[loginform.password];
-    var username = username;
-    var password = password;
-    if ((un === username) && (pw === password)) {
-      console.log('success');
-      window.data = JSON.parse(data);
-      var mainpage = mainpage;
-      app.templates($('.wholethingy').html(mainpage));
-    }
-    else {
-        console.log("Login was unsuccessful, please check your username and password");
-        return false;
-    }
-  },
+  login: function() {
+
+    $.ajax({
+      url: "/login",
+      method: 'POST',
+      data: {
+        username: $('input[name="username"]').val(),
+        password: $('input[name="password"]').val(),
+      },
+      success: function(){
+          console.log('success');
+          $('.wholethingy').on('click', '.login', function(event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+            });
+      },
+      error: function(data){
+        $('.msgArea').html('<p>Incorrect username or password</p>');
+      }
+    });
+
+},
+
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
