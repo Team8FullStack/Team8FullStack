@@ -2,7 +2,6 @@ $(document).ready(function(){
   app.init();
 });
 
-//// Global variables
 activeUser = {};
 matchArray = [];
 
@@ -11,6 +10,7 @@ var app = {
     styles.signIn();
     events.login();
     events.createUser();
+    events.submitNewUser();
     events.enterSite();
   },
 
