@@ -45,7 +45,7 @@ var events = {
             location: $('input[name="location"]').val(),
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
-            stereotypeName: $('select[class="stereotype"]').val()
+            stereotypeName: $('select[name="stereotypeName"]').val()
           },
           success: function(data){
             console.log(data);
