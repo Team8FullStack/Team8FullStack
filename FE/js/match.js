@@ -2,7 +2,7 @@
 // Getting matches is dependent on the login function
 // login must define activeUser located on app.js
 // get.allMatches(); must run first
-// get.closestMatch(); returns one variation of opposite sex same stereotype
+// get.closestMatch(); returns one variation of opposite sex same stereotype //
 /////////////////////////////////////////////////////////////////////////////////////
 
 var get = {
