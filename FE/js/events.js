@@ -18,7 +18,8 @@ var events = {
             });
       },
       error: function(data){
-        console.log(data);
+        createUser = _.template(templates.createUser);
+        events.createUser();
       }
     });
 
