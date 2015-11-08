@@ -1,5 +1,9 @@
 var events = {
 
+
+
+
+
   login: function() {
 
     $.ajax({
@@ -11,9 +15,11 @@ var events = {
       },
       success: function(){
           console.log('success');
+          $('.wholethingy').on('click', '.login', function(event){
             event.preventDefault();
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
+            });
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');
@@ -21,6 +27,13 @@ var events = {
     });
 
 },
+
+    // else {
+    //     alert ("Login was unsuccessful, please check your username and password");
+    //     return false;
+    // }
+
+
 
 
   createUser: function (){
@@ -32,19 +45,13 @@ var events = {
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
     });
+
   },
 
   submitNewUser: function () {
     $('.createUser').on('submit', function (event) {
       event.preventDefault();
-      var newUser = {
-        username: $('input[name=username]').val(''),
-        age: $('input[name=age]').val(''),
-        location: $('input[name=location]').val(''),
-        password: $('input[name=password]').val(''),
-        gender: $('select[class=gender]').val(''),
-        stereotype: $('select[class=stereotype]').val('')
-      };
+      // var =
       $.ajax({
           method:'POST',
           url: '/create-user',
@@ -52,49 +59,16 @@ var events = {
           success: function(data){
             window.userData = JSON.parse(data);
             app.currUser = data._id;
+            $('input[name="username"]').val('');
+            $('input[name="age"]').val('');
+            $('input[name="location"]').val('');
+            $('input[name="password"]').val('');
+            $('select[class="gender"]').val('');
+            $('select[class="stereotype"]').val('');
           }
         });
     });
   },
-
-  choseGender: function () {
-
-  },
-
-
-    enterSite: function (){
-
-         $('.wholethingy').on('click', '.signup', function (event){
-            event.preventDefault();
-            mainpage = _.template(templates.mainpage);
-            $('.wholethingy').html(mainpage);
-        });
-     }
-};
-
-//////////////////////////////////////////////
-
-
-
- //  login: function() {
- //    var loginData = {
- //      username: $('input[name=username]').val(),
- //      password: $('input[name=password]').val()
- //    };
- //   $.ajax({
- //     url: '/login',
- //     method: 'POST',
- //     success: function(data) {
- //       console.log('success', data);
- //       window.dateData = JSON.parse(data);
- //       app.templates($('.wholethingy').html(mainpage));
- //     },
- //     failure: function(data){
- //       console.log("failure", data);
- //     },
- //   });
- // },
-
 
   // submitExistingUser: function () {
   //   $('.login').on('submit', function (event) {
@@ -113,3 +87,19 @@ var events = {
   //       });
   //   });
   // },
+
+
+  choseGender: function () {
+
+  },
+
+
+    enterSite: function (){
+
+         $('.wholethingy').on('click', '.signup', function (event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+        });
+     }
+};

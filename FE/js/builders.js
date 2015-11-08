@@ -41,7 +41,9 @@ createUser: [
 
 mainpage: [
 "<div class='mainpage'>",
-"<header class='col-md-12'></header>",
+"<header class='col-md-12'>",
+"<h2>ster·e·o·type</h2>",
+"</header>",
 "<div class='col-md-8'>",
 "<div class='col-md-3'>",
 "<section class='matches'>",
@@ -50,8 +52,11 @@ mainpage: [
 "<div class='match3'></div>",
 "</section>",
 "</div>",
-"<div class='col-md-9'></div>",
+"<div class='col-md-9'>",
 "<div class='profilepic'></div>",
+"<div class='profileinfo'></div>",
+"</div>",
+"</div>",
 "</div>",
 "</div>",
 "<footer class='col-md-12'></footer>",
