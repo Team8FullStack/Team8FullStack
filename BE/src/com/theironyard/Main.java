@@ -222,7 +222,7 @@ public class Main {
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
 
-                    User temp = selectUser(conn, username);
+                    User temp = selectUser(conn, request.queryParams("username"));
 
                     if (temp == null || !password.equals(temp.password)) {
                         Spark.halt(403);
