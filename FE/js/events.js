@@ -2,45 +2,41 @@ var events = {
 
 // form validation care of Karlen Kishmiryan at stackoverflow:
 // http://stackoverflow.com/questions/23134756/simple-javascript-login-form-validation
-  // login: function validateForm() {
-  //   var un = templates.signIn[loginform.username];
-  //   var pw = templates.signIn[loginform.password];
-  //   var username = "username";
-  //   var password = "password";
-  //   if (un === username && pw === password) {
-  //     console.log('success');
-  //       return true;
-  //   }
-  //   else {
-  //       console.log("Login was unsuccessful, please check your username and password");
-  //       return false;
-  //   }
+  login: function validateForm(data) {
+    var un = templates.signIn[loginform.username];
+    var pw = templates.signIn[loginform.password];
+    var username = username;
+    var password = password;
+    if ((un === username) && (pw === password)) {
+      console.log('success');
+      window.data = JSON.parse(data);
+      var mainpage = mainpage;
+      app.templates($('.wholethingy').html(mainpage));
+    }
+    else {
+        console.log("Login was unsuccessful, please check your username and password");
+        return false;
+    }
+  },
 
-    // $('.wholethingy').on('click', '.login', function(event){
-    //   event.preventDefault();
-    //   mainpage = _.template(templates.mainpage);
-    //   $('.wholethingy').html(mainpage);
-    //   });
-  //
-  // },
-
-  login: function() {
-    var loginData = {
-      username: $('input[name=username]').val(),
-      password: $('input[name=password]').val()
-    };
-   $.ajax({
-     url: '/login',
-     method: 'POST',
-     success: function(data) {
-       console.log('success', data);
-       $('.wholethingy').html(mainpage);
-     },
-     failure: function(data){
-       console.log("failure", data);
-     },
-   });
- },
+ //  login: function() {
+ //    var loginData = {
+ //      username: $('input[name=username]').val(),
+ //      password: $('input[name=password]').val()
+ //    };
+ //   $.ajax({
+ //     url: '/login',
+ //     method: 'POST',
+ //     success: function(data) {
+ //       console.log('success', data);
+ //       window.dateData = JSON.parse(data);
+ //       app.templates($('.wholethingy').html(mainpage));
+ //     },
+ //     failure: function(data){
+ //       console.log("failure", data);
+ //     },
+ //   });
+ // },
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
