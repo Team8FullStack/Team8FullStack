@@ -36,6 +36,7 @@ var events = {
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
     });
+
   },
 
   submitNewUser: function () {
@@ -47,7 +48,8 @@ var events = {
           url: '/create-user',
           data: userData,
           success: function(data){
-            page.currUser = data._id;
+            window.userData = JSON.parse(data);
+            app.currUser = data._id;
             $('input[name="username"]').val('');
             $('input[name="age"]').val('');
             $('input[name="location"]').val('');
@@ -58,6 +60,25 @@ var events = {
         });
     });
   },
+
+  // submitExistingUser: function () {
+  //   $('.login').on('submit', function (event) {
+  //     event.preventDefault();
+  //     // var =
+  //     $.ajax({
+  //         method:'GET',
+  //         url: '/get-users',
+  //         data: userData,
+  //         success: function(data){
+  //           window.userData = JSON.parse(data);
+  //           app.currUser = data._id;
+  //           $('input[name="username"]').val('');
+  //           $('input[name="password"]').val('');
+  //         }
+  //       });
+  //   });
+  // },
+
 
   choseGender: function () {
 
