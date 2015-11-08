@@ -177,6 +177,8 @@ public class Main {
 //    }
 
     public static void main(String[] args) throws SQLException {
+
+        //changes
 	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         createTables(conn);
 
