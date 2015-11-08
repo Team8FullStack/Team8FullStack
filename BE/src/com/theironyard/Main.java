@@ -16,14 +16,14 @@ public class Main {
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.execute("CREATE TABLE IF NOT EXISTS users " +
-                "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_json VARCHAR)");
+                "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_json VARCHAR, pic_url VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS stereotypes " +
                 "(id IDENTITY, stereotype_name VARCHAR, gender VARCHAR, attribute_key VARCHAR, attribute_value VARCHAR)");
     }
 
     // adds user to database
-    public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?)");
+    public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName, String picURL) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
         JsonSerializer serializer = new JsonSerializer();
         Stereotype stereotype = setStereotype(conn, stereotypeName, gender);
         stmt.setString(1, username);
@@ -32,6 +32,7 @@ public class Main {
         stmt.setString(4, location);
         stmt.setInt(5, age);
         stmt.setString(6, serializer.serialize(stereotype));
+        stmt.setString(7, picURL);
         stmt.execute();
     }
 
@@ -145,37 +146,6 @@ public class Main {
         stmt.execute();
     }
 
-    public static User generateRandomMatch (Connection conn, String username) throws SQLException {
-        User temp = selectUser(conn, username);
-        String type = temp.stereotype.typeName;
-        String gender = temp.gender;
-
-        JsonParser parser = new JsonParser();
-        User user = null;
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE attribute_key = ? AND gender != ? ORDER BY RAND() LIMIT 1");
-        stmt.setString(1, type);
-        stmt.setString(2, gender);
-        ResultSet results = stmt.executeQuery();
-        if (results.next()) {
-            user = new User();
-            user.username = results.getString("username");
-            user.password = results.getString("password");
-            user.gender = results.getString("gender");
-            user.location = results.getString("location");
-            user.age = results.getInt("age");
-            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
-        }
-        return user;
-    }
-
-    public static HashMap<String, User> generateRandomPairing (Connection conn, String username) throws SQLException {
-        HashMap m = new HashMap();
-        User temp = generateRandomMatch(conn, username);
-        m.put(username, temp);
-
-        return m;
-    }
-
     public static void main(String[] args) throws SQLException {
 
 	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
@@ -183,10 +153,19 @@ public class Main {
 
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
-            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
-            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
-            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
-            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie", "");
+            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit", "");
+            insertUser(conn, "Jack", "password", "Male", "New York, NY", 67, "Frat Star / Sorrity Sis", "");
+            insertUser(conn, "Frank", "password", "Male", "Birmingham, AL", 32, "Programmer", "");
+            insertUser(conn, "Walter", "password", "Male", "Dallas, TX", 18, "Skater", "");
+            insertUser(conn, "Michael", "password", "Male", "Denver, CO", 40, "Hiptser", "");
+
+            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater", "");
+            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster", "");
+            insertUser(conn, "Catherine", "password", "Female", "Ithaca, NY", 50, "Crossfit", "");
+            insertUser(conn, "Emily", "password", "Female", "San Diego, CA", 37, "Hippie", "");
+            insertUser(conn, "Anne", "password", "Female", "Miami, FL", 98, "Programmer", "");
+            insertUser(conn, "Lisa", "password", "Female", "Reading, PA", 29, "Frat Star / Sorority Sis", "");
         }
 
 
@@ -245,9 +224,10 @@ public class Main {
                     String location = request.queryParams("location");
                     int age = Integer.valueOf(request.queryParams("age"));
                     String stereotypeName = request.queryParams("stereotypeName");
+                    String picURL = request.queryParams("picURL");
 
 
-                    insertUser(conn, username, password, gender, location, age, stereotypeName);
+                    insertUser(conn, username, password, gender, location, age, stereotypeName, picURL);
 
                     Session session = request.session();
                     session.attribute("username", username);
@@ -272,19 +252,6 @@ public class Main {
                     Session session = request.session();
                     session.invalidate();
                     return "";
-                })
-        );
-        Spark.post(
-                "/generate-random-match",
-                ((request, response) -> {
-                    Session session = request.session();
-                    String username = session.attribute("username");
-
-                    HashMap m = generateRandomPairing(conn, username);
-
-                    JsonSerializer serializer = new JsonSerializer();
-                    String json = serializer.serialize(m);
-                    return json;
                 })
         );
     }

@@ -10,6 +10,7 @@ public class User {
     String location;
     int age;
     Stereotype stereotype;
+    String picURL;
 
     public User() {
 
@@ -35,11 +36,11 @@ public class User {
         return age;
     }
 
-//    public int getStereotypeId() {
-//        return stereotypeId;
-//    }
-
     public Stereotype getStereotype() {
         return stereotype;
+    }
+
+    public String getPicURL() {
+        return picURL;
     }
 }
