@@ -13,6 +13,8 @@ var events = {
           console.log('success');
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
+
+            events.activeUser();
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');
@@ -26,7 +28,6 @@ var events = {
       event.preventDefault();
       $('.inputarea').addClass('hidden');
       $('.revealCreateUser').addClass('hidden');
-      var createUser = createUser;
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
     });
@@ -44,10 +45,11 @@ var events = {
             location: $('input[name="location"]').val(),
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
-            stereotypeName: $('select[class="stereotype"]').val()
+            stereotypeName: $('select[name="stereotypeName"]').val()
           },
           success: function(data){
             console.log(data);
+            events.activeUser();
           }
         });
   },
@@ -60,5 +62,16 @@ var events = {
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
         });
+     },
+
+     activeUser: function() {
+       $.ajax({
+         url: '/get-user',
+         method: 'GET',
+         success: function(data) {
+           activeUser = JSON.parse(data);
+           get.allMatches();
+         }
+       });
      }
 };
