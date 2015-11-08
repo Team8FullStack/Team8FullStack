@@ -4,27 +4,32 @@ var events = {
 
 
 
-  login: function validateForm() {
-    var un = loginform.username;
-    var pw = loginform.password;
-    var username = "username";
-    var password = "password";
-    if ((un === username) && (pw === password)) {
-      console.log('success');
-        return true;
-    }
-    else {
-        alert ("Login was unsuccessful, please check your username and password");
-        return false;
-    }
+  login: function() {
 
-    $('.wholethingy').on('click', '.login', function(event){
-      event.preventDefault();
-      mainpage = _.template(templates.mainpage);
-      $('.wholethingy').html(mainpage);
-      });
+    $.ajax({
+      url: "/login",
+      method: 'POST',
+      success: function(data){
+          console.log('success');
+          $('.wholethingy').on('click', '.login', function(event){
+            event.preventDefault();
+            mainpage = _.template(templates.mainpage);
+            $('.wholethingy').html(mainpage);
+            });
+      },
+      error: function(data){
+        console.log(data);
+      }
+    });
 
-  },
+},
+
+    // else {
+    //     alert ("Login was unsuccessful, please check your username and password");
+    //     return false;
+    // }
+
+
 
 
   createUser: function (){
