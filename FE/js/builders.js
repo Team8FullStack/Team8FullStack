@@ -6,9 +6,10 @@ signIn: [
 "<div class='inputarea'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='password' class='password' name='password' placeholder='enter password'>",
+"<span class='msgArea'></span>",
 "<button type='submit' class='login btn btn-default' name='submit' onclick='events.login()'>Login</button>",
 "</div>",
-"<div class='revealCreateUser'>",
+"<div class='revealCreateUser' onClick='events.createUser()'>",
 "<a href=''>Create New User</a>",
 "</div>"
 ].join(""),
