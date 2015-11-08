@@ -25,7 +25,7 @@ public class Main {
     public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?)");
         JsonSerializer serializer = new JsonSerializer();
-        Stereotype stereotype = setStereotype(conn, stereotypeName);
+        Stereotype stereotype = setStereotype(conn, stereotypeName, gender);
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, gender);
@@ -104,16 +104,16 @@ public class Main {
     }
 
     // randomly generates stereotype fields based on stereotype selection
-    public static Stereotype setStereotype(Connection conn, String stereotypeName) throws SQLException {
+    public static Stereotype setStereotype(Connection conn, String stereotypeName, String gender) throws SQLException {
         Stereotype stereotype = new Stereotype();
         stereotype.typeName = stereotypeName;
         String[] attributes = {"Music", "Food", "Drink", "Hobby", "Style", "HangoutSpot"};
         for (String item : attributes) {
             PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes " +
-                    "WHERE stereotype_name = ? AND attribute_key = ? ORDER BY RAND() LIMIT 1");
+                    "WHERE stereotype_name = ? AND gender = ? AND attribute_key = ? ORDER BY RAND() LIMIT 1");
             stmt.setString(1, stereotypeName);
-            //stmt.setString(2, gender);
-            stmt.setString(2, item);
+            stmt.setString(2, gender);
+            stmt.setString(3, item);
             ResultSet results = stmt.executeQuery();
             if (results.next()) {
                 if (item.equals("Music")) {
