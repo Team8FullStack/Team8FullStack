@@ -18,7 +18,7 @@ public class Main {
         stmt.execute("CREATE TABLE IF NOT EXISTS users " +
                 "(id IDENTITY, username VARCHAR, password VARCHAR, gender VARCHAR, location VARCHAR, age INT, stereotype_json VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS stereotypes " +
-                "(id IDENTITY, stereotype_name VARCHAR, gender VARCHAR attribute_key VARCHAR, attribute_value VARCHAR)");
+                "(id IDENTITY, stereotype_name VARCHAR, gender VARCHAR, attribute_key VARCHAR, attribute_value VARCHAR)");
     }
 
     // adds user to database
@@ -145,19 +145,51 @@ public class Main {
         stmt.execute();
     }
 
+//    public static User generateMatch (Connection conn, String username) throws SQLException {
+//        User temp = selectUser(conn, username);
+//        String type = temp.stereotype.typeName;
+//        String gender = temp.gender;
+//
+//        JsonParser parser = new JsonParser();
+//        User user = null;
+//        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE attribute_key = ? AND gender != ? ORDER BY RAND() LIMIT 1");
+//        stmt.setString(1, type);
+//        stmt.setString(2, gender);
+//        ResultSet results = stmt.executeQuery();
+//        if (results.next()) {
+//            user = new User();
+//            user.username = results.getString("username");
+//            user.password = results.getString("password");
+//            user.gender = results.getString("gender");
+//            user.location = results.getString("location");
+//            user.age = results.getInt("age");
+//            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
+//        }
+//        return user;
+//    }
+//
+//    public static HashMap<String, User> generatePairing (Connection conn, String username) throws SQLException {
+//        HashMap m = new HashMap();
+//        User temp = generateMatch(conn);
+//        m.put(username, temp);
+//
+//        return m;
+//    }
+
     public static void main(String[] args) throws SQLException {
+
+        //changes
 	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         createTables(conn);
 
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
-            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
+            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
+            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
+            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
         }
 
-        insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
-        insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
-        insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
-        insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
 
         Spark.externalStaticFileLocation("FE");
         Spark.init();
@@ -194,6 +226,9 @@ public class Main {
 
                     if (temp == null || !password.equals(temp.password)) {
                         Spark.halt(403);
+                    }
+                    else if (username.equals(temp.username) && password.equals(temp.password)) {
+                        System.out.println("Login Success");
                     }
 
                     Session session = request.session();
@@ -302,7 +337,7 @@ public class Main {
         createStereotype(conn, "Skater", "Male", "Hobby", "Loitering");
         createStereotype(conn, "Skater", "Male", "Style", "Skinny Jeans");
         createStereotype(conn, "Skater", "Male", "HangoutSpot", "Tha Streets");
-        createStereotype(conn, "Skater", "Male", "Music", "Tyler the Creator");
+        createStereotype(conn, "Skater", "Male", "Music", "Sublime");
         createStereotype(conn, "Skater", "Male", "Food", "Skittles");
         createStereotype(conn, "Skater", "Male", "Drink", "Soda Pop");
         createStereotype(conn, "Skater", "Male", "Hobby", "Running from Security Guards");
@@ -321,50 +356,50 @@ public class Main {
         createStereotype(conn, "Skater", "Female", "Hobby", "Loitering");
         createStereotype(conn, "Skater", "Female", "Style", "Nose Ring");
         createStereotype(conn, "Skater", "Female", "HangoutSpot", "Tha Streets");
-        createStereotype(conn, "Skater", "Female", "Music", "Tyler the Creator");
-        createStereotype(conn, "Skater", "Female", "Food", "Skittles");
+        createStereotype(conn, "Skater", "Female", "Music", "Sum 41");
+        createStereotype(conn, "Skater", "Female", "Food", "Candy");
         createStereotype(conn, "Skater", "Female", "Drink", "Soda Pop");
         createStereotype(conn, "Skater", "Female", "Hobby", "Running from Security Guards");
-        createStereotype(conn, "Skater", "Female", "Style", "Chain Link Wallet");
+        createStereotype(conn, "Skater", "Female", "Style", "Excessive Piercings");
         createStereotype(conn, "Skater", "Female", "HangoutSpot", "Spencer's");
 
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Music", "Dave Matthews Band");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Food", "Bar Food");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Drink", "Bud Light");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Hobby", "Beer Pong");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Style", "Polo");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "HangoutSpot", "The Frat House");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Music", "Nicki Minaj");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Food", "Ramen Noodles");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Drink", "Aristocrat/Evan Williams");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Hobby", "Tailgating");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Style", "North Face");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "HangoutSpot", "Pool");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Music", "Widespread Panic");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Food", "Chik fil a");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Drink", "Fireball");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Hobby", "Shots");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "Style", "Duck Boots");
-        createStereotype(conn, "Frat Star / Sorostitute", "Male",  "HangoutSpot", "The Frat House");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Music", "Dave Matthews Band");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Food", "Bar Food");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Drink", "Bud Light");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Hobby", "Beer Pong");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Style", "Polo");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "HangoutSpot", "The Frat House");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Music", "Country");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Food", "Ramen Noodles");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Drink", "Evan Williams");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Hobby", "Tailgating");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Style", "North Face");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "HangoutSpot", "Pool");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Music", "Widespread Panic");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Food", "Chik fil a");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Drink", "Fireball");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Hobby", "Shots");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "Style", "Duck Boots");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Male",  "HangoutSpot", "The Frat House");
 
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Music", "Dave Matthews Band");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Food", "Bar Food");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Drink", "Bud Light");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Hobby", "Beer Pong");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Style", "Polo");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "HangoutSpot", "The Frat House");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Music", "Nicki Minaj");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Food", "Ramen Noodles");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Drink", "Aristocrat/Evan Williams");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Hobby", "Tailgating");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Style", "North Face");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "HangoutSpot", "Pool");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Music", "Widespread Panic");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Food", "Chik fil a");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Drink", "Fireball");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Hobby", "Shots");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "Style", "Duck Boots");
-        createStereotype(conn, "Frat Star / Sorostitute", "Female",  "HangoutSpot", "The Frat House");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Music", "Dave Matthews Band");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Food", "Bar Food");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Drink", "Michelob Ultra");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Hobby", "Shopping");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Style", "Frat T's");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "HangoutSpot", "The Frat House");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Music", "Nicki Minaj");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Food", "Ramen Noodles");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Drink", "Aristocrat");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Hobby", "Tailgating");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Style", "North Face");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "HangoutSpot", "Pool");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Music", "Pop");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Food", "Chik fil a");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Drink", "Fireball");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Hobby", "Shots");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "Style", "Active Wear");
+        createStereotype(conn, "Frat Star / Sorority Sis", "Female",  "HangoutSpot", "The Frat House");
 
         createStereotype(conn, "Hipster", "Male", "Music", "You've probably never heard of them");
         createStereotype(conn, "Hipster", "Male", "Food", "Local Organic");
@@ -464,9 +499,9 @@ public class Main {
         createStereotype(conn, "Hippie", "Female", "Music", "Phish");
         createStereotype(conn, "Hippie", "Female", "Food", "Edibles");
         createStereotype(conn, "Hippie", "Female", "Drink", "Kombucha");
-        createStereotype(conn, "Hippie", "Female", "Hobby", "Drum Circles");
+        createStereotype(conn, "Hippie", "Female", "Hobby", "Hoola-Hooping");
         createStereotype(conn, "Hippie", "Female", "Style", "Tie-Dye");
-        createStereotype(conn, "Hippie", "Female", "HangoutSpot", "The Lot");
+        createStereotype(conn, "Hippie", "Female", "HangoutSpot", "The Woods");
         createStereotype(conn, "Hippie", "Female", "Music", "String Cheese Incident");
         createStereotype(conn, "Hippie", "Female", "Food", "Grilled Cheese");
         createStereotype(conn, "Hippie", "Female", "Drink", "Herbal Tea");

@@ -19,25 +19,6 @@ var events = {
     }
   },
 
- //  login: function() {
- //    var loginData = {
- //      username: $('input[name=username]').val(),
- //      password: $('input[name=password]').val()
- //    };
- //   $.ajax({
- //     url: '/login',
- //     method: 'POST',
- //     success: function(data) {
- //       console.log('success', data);
- //       window.dateData = JSON.parse(data);
- //       app.templates($('.wholethingy').html(mainpage));
- //     },
- //     failure: function(data){
- //       console.log("failure", data);
- //     },
- //   });
- // },
-
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
       event.preventDefault();
@@ -65,8 +46,8 @@ var events = {
           url: '/create-user',
           data: userData,
           success: function(data){
+            window.userData = JSON.parse(data);
             app.currUser = data._id;
-
           }
         });
     });
@@ -86,3 +67,45 @@ var events = {
         });
      }
 };
+
+//////////////////////////////////////////////
+
+
+
+ //  login: function() {
+ //    var loginData = {
+ //      username: $('input[name=username]').val(),
+ //      password: $('input[name=password]').val()
+ //    };
+ //   $.ajax({
+ //     url: '/login',
+ //     method: 'POST',
+ //     success: function(data) {
+ //       console.log('success', data);
+ //       window.dateData = JSON.parse(data);
+ //       app.templates($('.wholethingy').html(mainpage));
+ //     },
+ //     failure: function(data){
+ //       console.log("failure", data);
+ //     },
+ //   });
+ // },
+
+
+  // submitExistingUser: function () {
+  //   $('.login').on('submit', function (event) {
+  //     event.preventDefault();
+  //     // var =
+  //     $.ajax({
+  //         method:'GET',
+  //         url: '/get-users',
+  //         data: userData,
+  //         success: function(data){
+  //           window.userData = JSON.parse(data);
+  //           app.currUser = data._id;
+  //           $('input[name="username"]').val('');
+  //           $('input[name="password"]').val('');
+  //         }
+  //       });
+  //   });
+  // },
