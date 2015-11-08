@@ -9,6 +9,11 @@ var events = {
     $.ajax({
       url: "/login",
       method: 'POST',
+      data: {
+        username: $('input[name="username"]').val(),
+        password: $('input[name="password"]').val(),
+
+      },
       success: function(data){
           console.log('success');
           $('.wholethingy').on('click', '.login', function(event){
