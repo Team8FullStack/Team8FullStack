@@ -1,11 +1,13 @@
 var events = {
 
+// form validation care of Karlen Kishmiryan at stackoverflow:
+// http://stackoverflow.com/questions/23134756/simple-javascript-login-form-validation
   login: function validateForm() {
-    var un = loginform.username;
-    var pw = loginform.password;
+    var un = templates.signIn[loginform.username];
+    var pw = templates.signIn[loginform.password];
     var username = "username";
     var password = "password";
-    if ((un === username) && (pw === password)) {
+    if (un === username && pw === password) {
       console.log('success');
         return true;
     }
@@ -14,6 +16,8 @@ var events = {
         return false;
     }
   },
+
+
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
