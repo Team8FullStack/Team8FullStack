@@ -11,11 +11,9 @@ var events = {
       },
       success: function(){
           console.log('success');
-          $('.wholethingy').on('click', '.login', function(event){
             event.preventDefault();
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
-            });
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');

@@ -3,7 +3,6 @@ var templates = {
 signIn: [
 "<h1 class='title'>ster·e·o·type</h1>",
 "<div class='signIn'>",
-"<form name='loginform' onSubmit='return validateForm();' action='/get-users' method='post'>",
 "<div class='inputarea'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='password' class='password' name='password' placeholder='enter password'>",
