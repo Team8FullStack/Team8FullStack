@@ -18,8 +18,7 @@ var events = {
             });
       },
       error: function(data){
-        createUser = _.template(templates.createUser);
-        events.createUser();
+        $('.msgArea').html('<p>Incorrect username or password</p>');
       }
     });
 
