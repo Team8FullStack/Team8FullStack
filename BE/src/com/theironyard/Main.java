@@ -25,7 +25,7 @@ public class Main {
     public static void insertUser(Connection conn, String username, String password, String gender, String location, int age, String stereotypeName) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?)");
         JsonSerializer serializer = new JsonSerializer();
-        Stereotype stereotype = setStereotype(conn, stereotypeName, gender);
+        Stereotype stereotype = setStereotype(conn, stereotypeName);
         stmt.setString(1, username);
         stmt.setString(2, password);
         stmt.setString(3, gender);
@@ -104,16 +104,16 @@ public class Main {
     }
 
     // randomly generates stereotype fields based on stereotype selection
-    public static Stereotype setStereotype(Connection conn, String stereotypeName, String gender) throws SQLException {
+    public static Stereotype setStereotype(Connection conn, String stereotypeName) throws SQLException {
         Stereotype stereotype = new Stereotype();
         stereotype.typeName = stereotypeName;
         String[] attributes = {"Music", "Food", "Drink", "Hobby", "Style", "HangoutSpot"};
         for (String item : attributes) {
             PreparedStatement stmt = conn.prepareStatement("SELECT attribute_value FROM stereotypes " +
-                    "WHERE stereotype_name = ? AND gender = ? AND attribute_key = ? ORDER BY RAND() LIMIT 1");
+                    "WHERE stereotype_name = ? AND attribute_key = ? ORDER BY RAND() LIMIT 1");
             stmt.setString(1, stereotypeName);
-            stmt.setString(2, gender);
-            stmt.setString(3, item);
+            //stmt.setString(2, gender);
+            stmt.setString(2, item);
             ResultSet results = stmt.executeQuery();
             if (results.next()) {
                 if (item.equals("Music")) {
@@ -145,40 +145,39 @@ public class Main {
         stmt.execute();
     }
 
-//    public static User generateMatch (Connection conn, String username) throws SQLException {
-//        User temp = selectUser(conn, username);
-//        String type = temp.stereotype.typeName;
-//        String gender = temp.gender;
-//
-//        JsonParser parser = new JsonParser();
-//        User user = null;
-//        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE attribute_key = ? AND gender != ? ORDER BY RAND() LIMIT 1");
-//        stmt.setString(1, type);
-//        stmt.setString(2, gender);
-//        ResultSet results = stmt.executeQuery();
-//        if (results.next()) {
-//            user = new User();
-//            user.username = results.getString("username");
-//            user.password = results.getString("password");
-//            user.gender = results.getString("gender");
-//            user.location = results.getString("location");
-//            user.age = results.getInt("age");
-//            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
-//        }
-//        return user;
-//    }
-//
-//    public static HashMap<String, User> generatePairing (Connection conn, String username) throws SQLException {
-//        HashMap m = new HashMap();
-//        User temp = generateMatch(conn);
-//        m.put(username, temp);
-//
-//        return m;
-//    }
+    public static User generateRandomMatch (Connection conn, String username) throws SQLException {
+        User temp = selectUser(conn, username);
+        String type = temp.stereotype.typeName;
+        String gender = temp.gender;
+
+        JsonParser parser = new JsonParser();
+        User user = null;
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE attribute_key = ? AND gender != ? ORDER BY RAND() LIMIT 1");
+        stmt.setString(1, type);
+        stmt.setString(2, gender);
+        ResultSet results = stmt.executeQuery();
+        if (results.next()) {
+            user = new User();
+            user.username = results.getString("username");
+            user.password = results.getString("password");
+            user.gender = results.getString("gender");
+            user.location = results.getString("location");
+            user.age = results.getInt("age");
+            user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
+        }
+        return user;
+    }
+
+    public static HashMap<String, User> generateRandomPairing (Connection conn, String username) throws SQLException {
+        HashMap m = new HashMap();
+        User temp = generateRandomMatch(conn, username);
+        m.put(username, temp);
+
+        return m;
+    }
 
     public static void main(String[] args) throws SQLException {
 
-        //changes
 	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         createTables(conn);
 
@@ -222,7 +221,7 @@ public class Main {
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
 
-                    User temp = selectUser(conn, request.queryParams("username"));
+                    User temp = selectUser(conn, username);
 
                     if (temp == null || !password.equals(temp.password)) {
                         Spark.halt(403);
@@ -273,6 +272,19 @@ public class Main {
                     Session session = request.session();
                     session.invalidate();
                     return "";
+                })
+        );
+        Spark.post(
+                "/generate-random-match",
+                ((request, response) -> {
+                    Session session = request.session();
+                    String username = session.attribute("username");
+
+                    HashMap m = generateRandomPairing(conn, username);
+
+                    JsonSerializer serializer = new JsonSerializer();
+                    String json = serializer.serialize(m);
+                    return json;
                 })
         );
     }

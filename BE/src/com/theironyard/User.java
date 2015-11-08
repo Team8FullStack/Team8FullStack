@@ -9,7 +9,6 @@ public class User {
     String gender;
     String location;
     int age;
-    // int stereotypeId; <- do i need this?
     Stereotype stereotype;
 
     public User() {
