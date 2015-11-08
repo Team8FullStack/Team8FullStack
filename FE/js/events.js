@@ -1,5 +1,9 @@
 var events = {
 
+
+
+
+
   login: function validateForm() {
     var un = loginform.username;
     var pw = loginform.password;
@@ -13,7 +17,15 @@ var events = {
         alert ("Login was unsuccessful, please check your username and password");
         return false;
     }
+
+    $('.wholethingy').on('click', '.login', function(event){
+      event.preventDefault();
+      mainpage = _.template(templates.mainpage);
+      $('.wholethingy').html(mainpage);
+      });
+
   },
+
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
