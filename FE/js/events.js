@@ -1,9 +1,5 @@
 var events = {
 
-
-
-
-
   login: function() {
 
     $.ajax({
@@ -15,11 +11,8 @@ var events = {
       },
       success: function(){
           console.log('success');
-          $('.wholethingy').on('click', '.login', function(event){
-            event.preventDefault();
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
-            });
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');
@@ -27,8 +20,6 @@ var events = {
     });
 
 },
-
-
 
 
   createUser: function (){
@@ -44,55 +35,29 @@ var events = {
   },
 
   submitNewUser: function () {
-    $('.createUser').on('submit', function (event) {
       event.preventDefault();
-      // var =
       $.ajax({
           method:'POST',
           url: '/create-user',
-          data: userData,
+          data: {
+            username: $('input[name="username"]').val(),
+            age: $('input[name="age"]').val(),
+            location: $('input[name="location"]').val(),
+            password: $('input[name="password"]').val(),
+            gender: $('select[class="gender"]').val(),
+            stereotypeName: $('select[class="stereotype"]').val()
+          },
           success: function(data){
-            window.userData = JSON.parse(data);
-            app.currUser = data._id;
-            $('input[name="username"]').val('');
-            $('input[name="age"]').val('');
-            $('input[name="location"]').val('');
-            $('input[name="password"]').val('');
-            $('select[class="gender"]').val('');
-            $('select[class="stereotype"]').val('');
+            console.log(data);
           }
         });
-    });
   },
-
-  // submitExistingUser: function () {
-  //   $('.login').on('submit', function (event) {
-  //     event.preventDefault();
-  //     // var =
-  //     $.ajax({
-  //         method:'GET',
-  //         url: '/get-users',
-  //         data: userData,
-  //         success: function(data){
-  //           window.userData = JSON.parse(data);
-  //           app.currUser = data._id;
-  //           $('input[name="username"]').val('');
-  //           $('input[name="password"]').val('');
-  //         }
-  //       });
-  //   });
-  // },
-
-
-  choseGender: function () {
-
-  },
-
 
     enterSite: function (){
 
          $('.wholethingy').on('click', '.signup', function (event){
             event.preventDefault();
+            events.submitNewUser();
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
         });
