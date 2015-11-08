@@ -42,7 +42,7 @@ public class MainTest {
         Connection conn = startConnection();
         Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
         User user = Main.selectUser(conn, "Alex");
-        user.stereotype = Main.setStereotype(conn, "Programmer", "Male");
+        user.stereotype = Main.setStereotype(conn, "Programmer");
 
         Stereotype temp = Main.selectStereotype(conn, user.stereotype.typeName);
 
@@ -53,7 +53,7 @@ public class MainTest {
     public void testSetStereotype() throws SQLException {
         Connection conn = startConnection();
         Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
-        Stereotype stereotype = Main.setStereotype(conn, "Hippie", "Male");
+        Stereotype stereotype = Main.setStereotype(conn, "Hippie");
         endConnection(conn);
 
         System.out.println(stereotype);
