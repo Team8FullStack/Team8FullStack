@@ -177,18 +177,19 @@ public class Main {
 //    }
 
     public static void main(String[] args) throws SQLException {
+
+        //changes
 	    Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         createTables(conn);
 
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
-            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
+            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
+            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
+            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
         }
 
-        insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie");
-        insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit");
-        insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater");
-        insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster");
 
         Spark.externalStaticFileLocation("FE");
         Spark.init();
@@ -225,6 +226,9 @@ public class Main {
 
                     if (temp == null || !password.equals(temp.password)) {
                         Spark.halt(403);
+                    }
+                    else if (username.equals(temp.username) && password.equals(temp.password)) {
+                        System.out.println("Login Success");
                     }
 
                     Session session = request.session();
