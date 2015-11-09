@@ -33,7 +33,7 @@ createUser: [
 "<option class='stereotypeName'>Programmer</option>",
 "<option class='stereotypeName'>Crossfit</option>",
 "<option class='stereotypeName'>Hipster</option>",
-"<option class='stereotypeName'>Frat Star / Sorostitute</option>",
+"<option class='stereotypeName' value='Frat Star / Sorority Sis'>Frat Star / Sorostitute</option>",
 "</select>",
 "<button type='submit' class='signup btn btn-default' name='signup'>Start Stereotyping!</button>",
 "</div>"

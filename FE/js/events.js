@@ -83,8 +83,11 @@ var events = {
          method: 'POST',
          url: '/delete-user',
          success: function(deleted) {
+           console.log('deleted');
+           $('.wholethingy').html(signIn);
          },
          failure: function(notdeleted) {
+           console.log('not deleted');
          }
        });
      },
