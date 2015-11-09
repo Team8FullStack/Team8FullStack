@@ -85,6 +85,16 @@ var events = {
          $('.match1').html(display);
        });
      },
+
+     getOppositeMatch: function (){
+       $('.wholethingy').on('click', '.getopp', function(){
+         var profiletmpl = _.template(templates.profile);
+         get.oppositeMatch();
+         var display = profiletmpl(match);
+         $('.match1').html(display);
+       });
+     },
+
      getProfile: function (){
        $('.mainpage').on('load', function(){
          var profiletmpl = _.template(templates.profile);

@@ -44,7 +44,6 @@ var get = {
     idxNum = Math.floor(Math.random() * (sameTypeArray.length - 1)) + 0;
     match = sameTypeArray[idxNum];
 
-    console.log(match);
 
   },
 
@@ -54,10 +53,10 @@ var get = {
     oppositeValueArray = {
       Hipster: {
         name: "Hipster",
-        opp: "Frat Star / Sorostitute"
+        opp: "Frat Star / Sorority Sis"
       },
       Frat: {
-        name: "Frat Star / Sorostitute",
+        name: "Frat Star / Sorority Sis",
         opp: "Hipster"
       },
       Hippie: {

@@ -11,6 +11,7 @@ var app = {
     styles.signIn();
     events.enterSite();
     events.getClosestMatch();
+    events.getOppositeMatch();
     events.getProfile();
   },
 
