@@ -19,6 +19,9 @@ var events = {
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');
+        $('input[name="username"]').val("");
+        $('input[name="password"]').val("");
+        $('.signIn').css('height', '310px');
       }
     });
 
@@ -79,6 +82,7 @@ var events = {
 
      getClosestMatch: function (){
        $('.wholethingy').on('click', '.getmatch', function(){
+
          var profiletmpl = _.template(templates.profile);
          get.closestMatch();
 
@@ -87,18 +91,12 @@ var events = {
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
 
-        //  var picture = _.template(templates.picture);
-        //  image = picture(activeUser);
-        //  $('.profilepic').html(image);
-         //
-        //  matchimg = picture(match);
-        //  $('.matchPic').html(matchimg);
-
       });
      },
 
      getOppositeMatch: function (){
        $('.wholethingy').on('click', '.getopp', function(){
+
          var profiletmpl = _.template(templates.profile);
          get.oppositeMatch();
 
@@ -107,12 +105,6 @@ var events = {
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
 
-        //  var picture = _.template(templates.picture);
-        //  image = picture(activeUser);
-        //  $('.profilepic').html(image);
-
-        //  matchimg = picture(oppositeMatch);
-        //  $('.matchPic').html(matchimg);
        });
      },
 
@@ -146,12 +138,12 @@ var events = {
     //    });
     //  },
 
-    //  getProfile: function (){
-    //    $('.col-md-9').ready(function(){
-    //      var profiletmpl = _.template(templates.profile);
-    //      var display = profiletmpl(activeUser);
-    //      $('.profilepic').html(display);
-    //    });
-    //  },
+     getProfile: function (){
+       $('.col-md-9').ready(function(){
+         var profiletmpl = _.template(templates.profile);
+         var display = profiletmpl(activeUser);
+         $('.profileinfo').html(display);
+       });
+     },
 
 };

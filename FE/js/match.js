@@ -29,6 +29,7 @@ var get = {
   },
 
   closestMatch: function() {
+    
     userType = activeUser.stereotype.typeName;
     // this is where the match is picked from for this 'closest' filter
     sameTypeArray = [];
@@ -48,6 +49,7 @@ var get = {
   },
 
   oppositeMatch: function() {
+
      opposite = "";
 
     oppositeValueArray = {
