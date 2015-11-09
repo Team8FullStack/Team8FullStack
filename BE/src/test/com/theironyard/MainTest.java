@@ -30,7 +30,7 @@ public class MainTest {
     @Test
     public void testUsers() throws SQLException {
         Connection conn = startConnection();
-        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer", "");
         User user = Main.selectUser(conn, "Alex");
         endConnection(conn);
 
@@ -40,7 +40,7 @@ public class MainTest {
     @Test
     public void testStereotype() throws SQLException {
         Connection conn = startConnection();
-        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer", "");
         User user = Main.selectUser(conn, "Alex");
         user.stereotype = Main.setStereotype(conn, "Programmer", "Male");
 
@@ -52,7 +52,7 @@ public class MainTest {
     @Test
     public void testSetStereotype() throws SQLException {
         Connection conn = startConnection();
-        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer");
+        Main.insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Programmer", "");
         Stereotype stereotype = Main.setStereotype(conn, "Hippie", "Male");
         endConnection(conn);
 
