@@ -1,9 +1,5 @@
 var events = {
 
-
-
-
-
   login: function() {
 
     $.ajax({
@@ -16,10 +12,10 @@ var events = {
       },
       success: function(){
           console.log('success');
-            event.preventDefault();
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
 
+            events.activeUser();
       },
       error: function(data){
         $('.msgArea').html('<p>Incorrect username or password</p>');
@@ -28,20 +24,11 @@ var events = {
 
 },
 
-    // else {
-    //     alert ("Login was unsuccessful, please check your username and password");
-    //     return false;
-    // }
-
-
-
-
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
       event.preventDefault();
       $('.inputarea').addClass('hidden');
       $('.revealCreateUser').addClass('hidden');
-      var createUser = createUser;
       createUser = _.template(templates.createUser);
       $('.signIn').html(createUser).css('height', '450px');
     });
@@ -49,33 +36,25 @@ var events = {
   },
 
   submitNewUser: function () {
-    // $('.createUser').on('.signup', function (event) {
       event.preventDefault();
-      var obj = {
-      username:  $('input[name="username"]').val(),
-      age:  $('input[name="age"]').val(),
-      location:  $('input[name="location"]').val(),
-      password:  $('input[name="password"]').val(),
-      gender:  $('select[class="gender"]').val(),
-      stereotypeName: $('select[name="stereotypeName"]').val()
-    };
-    console.log(obj);
       $.ajax({
           method:'POST',
           url: '/create-user',
-          data: obj,
+          data: {
+            username: $('input[name="username"]').val(),
+            age: $('input[name="age"]').val(),
+            location: $('input[name="location"]').val(),
+            password: $('input[name="password"]').val(),
+            gender: $('select[class="gender"]').val(),
+            stereotypeName: $('select[name="stereotypeName"]').val(),
+            picture: $('input[name="picture"]').val() || "http://rccaleastcentral.org/image/default-user.jpg"
+          },
           success: function(data){
             console.log(data);
+            events.activeUser();
           }
         });
-    // });
   },
-
-
-  choseGender: function () {
-
-  },
-
 
     enterSite: function (){
 
@@ -85,5 +64,24 @@ var events = {
             mainpage = _.template(templates.mainpage);
             $('.wholethingy').html(mainpage);
         });
-     }
+     },
+
+     activeUser: function() {
+       $.ajax({
+         url: '/get-user',
+         method: 'GET',
+         success: function(data) {
+           activeUser = JSON.parse(data);
+           get.allMatches();
+         }
+       });
+     },
+
+     getClosestMatch: function (){
+       $('.wholethingy').on('click', '.getmatch', function(){
+         get.closestMatch();
+        //  $('.match1').text();
+       });
+     },
+
 };
