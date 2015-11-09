@@ -4,12 +4,14 @@ $(document).ready(function(){
 
 activeUser = {};
 matchArray = [];
+match = {};
 
 var app = {
   init: function() {
     styles.signIn();
     events.enterSite();
     events.getClosestMatch();
+    events.getOppositeMatch();
     events.getProfile();
   },
 
