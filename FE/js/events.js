@@ -92,7 +92,7 @@ var events = {
          $('.profilepic').html(image);
 
          matchimg = picture(match);
-         $('.matchPic').html(matchimg)
+         $('.matchPic').html(matchimg);
 
       });
      },
@@ -101,13 +101,18 @@ var events = {
        $('.wholethingy').on('click', '.getopp', function(){
          var profiletmpl = _.template(templates.profile);
          get.oppositeMatch();
-         var display = profiletmpl(match);
+
+         var display = profiletmpl(oppositeMatch);
          $('.match1').html(display);
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
+
          var picture = _.template(templates.picture);
          image = picture(activeUser);
          $('.profilepic').html(image);
+
+         matchimg = picture(oppositeMatch);
+         $('.matchPic').html(matchimg);
        });
      },
 
@@ -132,7 +137,7 @@ var events = {
         }
       });
     },
-    
+
     //  getProfile: function (){
     //    $('.mainpage').on('load', function(){
     //      var profiletmpl = _.template(templates.profile);

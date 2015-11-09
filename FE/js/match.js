@@ -96,9 +96,9 @@ var get = {
 
      // idxNum is set to a random whole number between 0 and the length of the array - 1
     idxNum = Math.floor(Math.random() * (oppositeTypeArray.length - 1)) + 0;
-    match = oppositeTypeArray[idxNum];
+    oppositeMatch = oppositeTypeArray[idxNum];
 
-    console.log(match);
+    console.log(oppositeMatch);
 
   },
 
