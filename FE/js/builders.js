@@ -33,7 +33,7 @@ createUser: [
 "<option class='stereotypeName'>Programmer</option>",
 "<option class='stereotypeName'>Crossfit</option>",
 "<option class='stereotypeName'>Hipster</option>",
-"<option class='stereotypeName' value='Frat Star / Sorority Sis'>Frat Star / Sorostitute</option>",
+"<option value='Frat Star / Sorority Sis' class='stereotypeName'>Frat Star / Sorostitute</option>",
 "</select>",
 "<button type='submit' class='signup btn btn-default' name='signup'>Start Stereotyping!</button>",
 "</div>"
@@ -46,7 +46,8 @@ mainpage: [
 "</header>",
 "<div class='col-md-8'>",
 "<div class='col-md-3'>",
-"<button class='getmatch btn btn-default' onClick='get.closestMatch'>Get Closest Match</button>",
+"<button class='getmatch btn btn-default' onClick='get.closestMatch()'>Get Closest Match</button>",
+"<button class='getopp btn btn-default' onClick='get.oppositeMatch()'>Get Opposite Match</button>",
 "<section class='matches'>",
 "<div class='match1'></div>",
 "</section>",

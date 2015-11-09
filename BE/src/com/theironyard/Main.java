@@ -153,12 +153,12 @@ public class Main {
 
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
-            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie", "");
+            insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie", "https://pbs.twimg.com/profile_images/1230544128/23433_1278412970315_1529730418_31395459_5861855_n_400x400.jpg");
             insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit", "");
-            insertUser(conn, "Jack", "password", "Male", "New York, NY", 67, "Frat Star / Sorrity Sis", "");
+            insertUser(conn, "Jack", "password", "Male", "New York, NY", 67, "Frat Star / Sorority Sis", "");
             insertUser(conn, "Frank", "password", "Male", "Birmingham, AL", 32, "Programmer", "");
             insertUser(conn, "Walter", "password", "Male", "Dallas, TX", 18, "Skater", "");
-            insertUser(conn, "Michael", "password", "Male", "Denver, CO", 40, "Hiptser", "");
+            insertUser(conn, "Michael", "password", "Male", "Denver, CO", 40, "Hipster", "");
 
             insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater", "");
             insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster", "");
