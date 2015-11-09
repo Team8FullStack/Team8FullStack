@@ -156,18 +156,18 @@ public class Main {
         if (selectUsers(conn).size() == 0) {
             createStereotypes(conn);
             insertUser(conn, "Alex", "password", "Male", "Charleston, SC", 25, "Hippie", "https://pbs.twimg.com/profile_images/1230544128/23433_1278412970315_1529730418_31395459_5861855_n_400x400.jpg");
-            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit", "");
-            insertUser(conn, "Jack", "password", "Male", "New York, NY", 67, "Frat Star / Sorority Sis", "");
-            insertUser(conn, "Frank", "password", "Male", "Birmingham, AL", 32, "Programmer", "");
-            insertUser(conn, "Walter", "password", "Male", "Dallas, TX", 18, "Skater", "");
-            insertUser(conn, "Michael", "password", "Male", "Denver, CO", 40, "Hipster", "");
+            insertUser(conn, "Steve", "password", "Male", "Cleveland, OH", 30, "Crossfit", "http://www.switchcrossfit.com/wp-content/uploads/2013/03/bearded-ripped-man-crossfit-300x237.jpg");
+            insertUser(conn, "Jack", "password", "Male", "New York, NY", 67, "Frat Star / Sorority Sis", "https://i.ytimg.com/vi/Fbsk127TnnE/hqdefault.jpg");
+            insertUser(conn, "Frank", "password", "Male", "Birmingham, AL", 32, "Programmer", "http://c.tadst.com/gfx/600x400/international-programmer-day.jpg?1");
+            insertUser(conn, "Walter", "password", "Male", "Dallas, TX", 18, "Skater", "https://thecanalian.files.wordpress.com/2009/07/wipe.jpg?w=300&h=221");
+            insertUser(conn, "Michael", "password", "Male", "Denver, CO", 40, "Hipster", "http://payload245.cargocollective.com/1/12/406998/7219238/HIPSTER_SANTA_599_by-Tomasz-Machnik.jpg");
 
-            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater", "");
-            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster", "");
-            insertUser(conn, "Catherine", "password", "Female", "Ithaca, NY", 50, "Crossfit", "");
-            insertUser(conn, "Emily", "password", "Female", "San Diego, CA", 37, "Hippie", "");
-            insertUser(conn, "Anne", "password", "Female", "Miami, FL", 98, "Programmer", "");
-            insertUser(conn, "Lisa", "password", "Female", "Reading, PA", 29, "Frat Star / Sorority Sis", "");
+            insertUser(conn, "Shelby", "password", "Female", "Atlanta, GA", 20, "Skater", "http://img13.deviantart.net/07a8/i/2008/252/8/d/skater_girl_by_tatareen.jpg");
+            insertUser(conn, "Lindsey", "password", "Female", "Los Angeles, CA", 40, "Hipster", "https://theinbetweengirls.files.wordpress.com/2012/04/girl-hipster-style-bow-tie.jpg");
+            insertUser(conn, "Catherine", "password", "Female", "Ithaca, NY", 50, "Crossfit", "http://primalstrengthcamp.com/wordpress/wp-content/uploads/2012/10/crossfit-girl-beer.jpg");
+            insertUser(conn, "Emily", "password", "Female", "San Diego, CA", 37, "Hippie", "https://fellowshipofminds.files.wordpress.com/2011/03/hippie3.jpg");
+            insertUser(conn, "Anne", "password", "Female", "Miami, FL", 98, "Programmer", "https://blog-static.odesk.com/blog/uploads/sites/4/2012/07/programmer.jpg");
+            insertUser(conn, "Lisa", "password", "Female", "Reading, PA", 29, "Frat Star / Sorority Sis", "https://pbs.twimg.com/profile_images/492487042073636864/EoMmywhF.jpeg");
         }
 
 
