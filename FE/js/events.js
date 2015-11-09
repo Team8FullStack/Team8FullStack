@@ -47,7 +47,7 @@ var events = {
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
             stereotypeName: $('select[name="stereotypeName"]').val(),
-            // picture: $('input[name="picture"]').val()
+            picURL: $('input[name="picture"]').val()
           },
           success: function(data){
             console.log(data);
@@ -86,10 +86,15 @@ var events = {
          $('.match1').html(display);
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
-      });
 
-      //  });
-      //  });
+         var picture = _.template(templates.picture);
+         image = picture(activeUser);
+         $('.profilepic').html(image);
+
+         matchimg = picture(match);
+         $('.matchPic').html(matchimg)
+
+      });
      },
 
      getOppositeMatch: function (){
@@ -98,6 +103,11 @@ var events = {
          get.oppositeMatch();
          var display = profiletmpl(match);
          $('.match1').html(display);
+         var lala = profiletmpl(activeUser);
+         $('.profileinfo').html(lala);
+         var picture = _.template(templates.picture);
+         image = picture(activeUser);
+         $('.profilepic').html(image);
        });
      },
 
@@ -108,6 +118,21 @@ var events = {
          $('.profilepic').html(display);
        });
      },
+
+     deleteUser: function () {
+      $.ajax({
+        method: 'POST',
+        url: '/delete-user',
+        success: function(deleted) {
+          console.log('deleted');
+          $('.wholethingy').html(signIn);
+        },
+        failure: function(notdeleted) {
+          console.log('not deleted');
+        }
+      });
+    },
+    
     //  getProfile: function (){
     //    $('.mainpage').on('load', function(){
     //      var profiletmpl = _.template(templates.profile);
