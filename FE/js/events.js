@@ -77,20 +77,6 @@ var events = {
        });
      },
 
-     deleteUser: function () {
-       $.ajax({
-         method: 'POST',
-         url: '/delete-user',
-         success: function(deleted) {
-           console.log('deleted');
-           $('.wholethingy').html(signIn);
-         },
-         failure: function(notdeleted) {
-           console.log('not deleted');
-         }
-       });
-     },
-
      getClosestMatch: function (){
        $('.wholethingy').on('click', '.getmatch', function(){
          var profiletmpl = _.template(templates.profile);
@@ -101,12 +87,12 @@ var events = {
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
 
-         var picture = _.template(templates.picture);
-         image = picture(activeUser);
-         $('.profilepic').html(image);
-
-         matchimg = picture(match);
-         $('.matchPic').html(matchimg)
+        //  var picture = _.template(templates.picture);
+        //  image = picture(activeUser);
+        //  $('.profilepic').html(image);
+         //
+        //  matchimg = picture(match);
+        //  $('.matchPic').html(matchimg);
 
       });
      },
@@ -115,13 +101,18 @@ var events = {
        $('.wholethingy').on('click', '.getopp', function(){
          var profiletmpl = _.template(templates.profile);
          get.oppositeMatch();
-         var display = profiletmpl(match);
+
+         var display = profiletmpl(oppositeMatch);
          $('.match1').html(display);
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
-         var picture = _.template(templates.picture);
-         image = picture(activeUser);
-         $('.profilepic').html(image);
+
+        //  var picture = _.template(templates.picture);
+        //  image = picture(activeUser);
+        //  $('.profilepic').html(image);
+
+        //  matchimg = picture(oppositeMatch);
+        //  $('.matchPic').html(matchimg);
        });
      },
 
@@ -133,7 +124,19 @@ var events = {
        });
      },
 
-
+     deleteUser: function () {
+      $.ajax({
+        method: 'POST',
+        url: '/delete-user',
+        success: function(deleted) {
+          console.log('deleted');
+          $('.wholethingy').html(signIn);
+        },
+        failure: function(notdeleted) {
+          console.log('not deleted');
+        }
+      });
+    },
 
     //  getProfile: function (){
     //    $('.mainpage').on('load', function(){

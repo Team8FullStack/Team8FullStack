@@ -61,7 +61,8 @@ body {
   .col-md-8 .col-md-3 {
     height: 650px; }
   .col-md-8 .col-md-9 {
-    height: 650px; }
+    height: 650px;
+    overflow: hidden; }
 
 .matches {
   height: 88%; }
@@ -71,7 +72,7 @@ body {
   border-radius: 30px;
   background-color: #f9f2e6;
   width: 123%;
-  height: 100%;
+  height: 75%;
   display: block;
   margin-top: 10px;
   overflow: scroll; }
@@ -94,8 +95,9 @@ body {
   margin-top: 30px;
   border: 4px solid #D88A8A;
   border-radius: 30px;
-  height: 381px;
-  background-color: #f9f2e6; }
+  height: 621px;
+  background-color: #f9f2e6;
+  overflow: scroll; }
 
 h2 {
   color: #f9f2e6;
@@ -131,5 +133,7 @@ h3 {
   margin-left: 25px; }
 
 .profPic {
-  width: 200px;
-  border-radius: 8px; }
+  width: 150px;
+  border-radius: 8px;
+  margin: 5% 15%;
+  border: 2px solid #D88A8A; }

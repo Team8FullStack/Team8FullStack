@@ -50,12 +50,11 @@ mainpage: [
 "<button class='getopp btn btn-default' onClick='get.oppositeMatch()'>Get Opposite Match</button>",
 "<button class='delete btn btn-default' onClick='events.deleteUser()'>Delete Account</button>",
 "<section class='matches'>",
-"<div class='matchPic'></div>",
+"<span class='matchPic'></span>",
 "<div class='match1'></div>",
 "</section>",
 "</div>",
 "<div class='col-md-9'>",
-"<div class='profilepic'></div>",
 "<div class='profileinfo'></div>",
 "</div>",
 "</div>",
@@ -67,6 +66,7 @@ mainpage: [
 
 profile: [
   "<h3><%= username %></h3>",
+  "<img class='profPic' src='<%= picURL %>' />",
   "<ul>",
   "<li>Stereotype: <%= stereotype.typeName %></li>",
   "<li>Favorite Drink: <%= stereotype.drink %></li>",
