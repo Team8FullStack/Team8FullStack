@@ -48,10 +48,10 @@ mainpage: [
 "<div class='col-md-3'>",
 "<button class='getmatch btn btn-default' onClick='get.closestMatch()'>Get Closest Match</button>",
 "<button class='getopp btn btn-default' onClick='get.oppositeMatch()'>Get Opposite Match</button>",
+"<button class='delete btn btn-default' onClick='events.deleteUser()'>Delete Account</button>",
 "<section class='matches'>",
 "<div class='match1'></div>",
 "</section>",
-"<button class='delete btn btn-default' onClick='events.deleteUser()'>Delete Account</button>",
 "</div>",
 "<div class='col-md-9'>",
 "<div class='profilepic'></div>",
@@ -66,7 +66,7 @@ mainpage: [
 
 profile: [
   "<h3><%= username %></h3>",
-  
+
   // "<img src='<%= picture %>'/>",
   "<ul>",
   "<li>Stereotype: <%= stereotype.typeName %></li>",

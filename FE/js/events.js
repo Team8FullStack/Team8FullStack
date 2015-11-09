@@ -21,7 +21,8 @@ var events = {
         $('.msgArea').html('<p>Incorrect username or password</p>');
       }
     });
-    },
+
+},
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
@@ -136,6 +137,5 @@ var events = {
     //      $('.profilepic').html(display);
     //    });
     //  },
-
 
 };
