@@ -47,7 +47,7 @@ var events = {
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
             stereotypeName: $('select[name="stereotypeName"]').val(),
-            picture: $('input[name="picture"]').val() || "http://rccaleastcentral.org/image/default-user.jpg"
+            // picture: $('input[name="picture"]').val()
           },
           success: function(data){
             console.log(data);
@@ -79,8 +79,10 @@ var events = {
 
      getClosestMatch: function (){
        $('.wholethingy').on('click', '.getmatch', function(){
+         var profiletmpl = _.template(templates.profile);
          get.closestMatch();
-        //  $('.match1').text();
+         var display = profiletmpl(match);
+         $('.match1').html(display);
        });
      },
 

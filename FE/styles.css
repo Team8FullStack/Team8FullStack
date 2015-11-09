@@ -65,14 +65,15 @@ body {
     height: 600px; }
 
 .matches {
-  height: 31%; }
+  height: 80%; }
 
-.match1, .match2, .match3 {
+.match1 {
   border: 2px solid white;
   width: 100%;
   height: 100%;
   display: block;
-  margin-top: 10px; }
+  margin-top: 10px;
+  overflow: scroll; }
 
 .profilepic {
   width: 32%;
