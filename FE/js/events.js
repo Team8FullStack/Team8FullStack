@@ -86,4 +86,12 @@ var events = {
        });
      },
 
+     getProfile: function (){
+       $('.mainpage').on('load', function(){
+         var profiletmpl = _.template(templates.profile);
+         var display = profiletmpl(match);
+         $('.profilepic').html(display);
+       });
+     },
+
 };
