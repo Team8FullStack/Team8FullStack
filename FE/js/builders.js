@@ -63,8 +63,9 @@ mainpage: [
 ].join(""),
 
 profile: [
-  "<h2><%= username %></h2>",
-  "<img src='<%= picture %>'/>",
+  "<h3><%= username %></h3>",
+  
+  // "<img src='<%= picture %>'/>",
   "<ul>",
   "<li>Stereotype: <%= stereotype.typeName %></li>",
   "<li>Favorite Drink: <%= stereotype.drink %></li>",
