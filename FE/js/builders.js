@@ -49,6 +49,7 @@ mainpage: [
 "<button class='getmatch btn btn-default' onClick='get.closestMatch()'>Get Closest Match</button>",
 "<button class='getopp btn btn-default' onClick='get.oppositeMatch()'>Get Opposite Match</button>",
 "<section class='matches'>",
+"<div class='matchPic'></div>",
 "<div class='match1'></div>",
 "</section>",
 "</div>",
@@ -76,5 +77,8 @@ profile: [
   "</ul>"
 ].join(""),
 
+picture: [
+  "<img class='profPic' src='<%= picURL %>' />"
+].join("")
 
 };
