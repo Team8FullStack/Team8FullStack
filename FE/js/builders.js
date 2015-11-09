@@ -50,6 +50,7 @@ mainpage: [
 "<section class='matches'>",
 "<div class='match1'></div>",
 "</section>",
+"<button class='delete btn btn-default' onClick='events.deleteUser()'>Delete Account</button>",
 "</div>",
 "<div class='col-md-9'>",
 "<div class='profilepic'></div>",
