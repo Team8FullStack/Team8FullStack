@@ -118,6 +118,21 @@ var events = {
          $('.profilepic').html(display);
        });
      },
+
+     deleteUser: function () {
+      $.ajax({
+        method: 'POST',
+        url: '/delete-user',
+        success: function(deleted) {
+          console.log('deleted');
+          $('.wholethingy').html(signIn);
+        },
+        failure: function(notdeleted) {
+          console.log('not deleted');
+        }
+      });
+    },
+    
     //  getProfile: function (){
     //    $('.mainpage').on('load', function(){
     //      var profiletmpl = _.template(templates.profile);

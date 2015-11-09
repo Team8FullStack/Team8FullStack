@@ -126,6 +126,10 @@ h3 {
   background-color: #f9f2e6;
   margin-left: 25px; }
 
+.delete {
+  background-color: #f9f2e6;
+  margin-left: 25px; }
+
 .profPic {
   width: 200px;
   border-radius: 8px; }
