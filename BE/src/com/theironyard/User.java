@@ -9,8 +9,8 @@ public class User {
     String gender;
     String location;
     int age;
-    // int stereotypeId; <- do i need this?
     Stereotype stereotype;
+    String picURL;
 
     public User() {
 
@@ -36,11 +36,11 @@ public class User {
         return age;
     }
 
-//    public int getStereotypeId() {
-//        return stereotypeId;
-//    }
-
     public Stereotype getStereotype() {
         return stereotype;
+    }
+
+    public String getPicURL() {
+        return picURL;
     }
 }
