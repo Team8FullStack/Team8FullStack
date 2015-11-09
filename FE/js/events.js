@@ -85,7 +85,6 @@ var events = {
          $('.match1').html(display);
        });
      },
-
      getProfile: function (){
        $('.mainpage').on('load', function(){
          var profiletmpl = _.template(templates.profile);
