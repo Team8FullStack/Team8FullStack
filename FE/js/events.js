@@ -86,4 +86,14 @@ var events = {
        });
      },
 
+     deleteUser: function () {
+      $.ajax({
+        method: 'POST',
+        url: '/delete-user',
+        success: function(notdeleted) {
+
+        }
+      });
+     }
+
 };
