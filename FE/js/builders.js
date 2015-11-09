@@ -55,7 +55,6 @@ mainpage: [
 "</section>",
 "</div>",
 "<div class='col-md-9'>",
-"<div class='profilepic'></div>",
 "<div class='profileinfo'></div>",
 "</div>",
 "</div>",
@@ -67,6 +66,7 @@ mainpage: [
 
 profile: [
   "<h3><%= username %></h3>",
+  "<img class='profPic' src='<%= picURL %>' />",
   "<ul>",
   "<li>Stereotype: <%= stereotype.typeName %></li>",
   "<li>Favorite Drink: <%= stereotype.drink %></li>",
