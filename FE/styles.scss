@@ -70,15 +70,17 @@ body {
 }
 
 .col-md-12 {
-  background-color: #D88A8A ;
+  background-color: #1b4e60 ;
   height: 100px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .col-md-8 {
 padding: 0;
-height: 650px;
+height: 750px;
 margin-left: 240px;
-background-color: #D88A8A;
+background-color: #1b4e60;
 
 // overflow: scroll;
   // background-color: #f9f2e6;
@@ -163,6 +165,10 @@ h3 {
   margin-left: 25px;
 }
 .getopp {
+  background-color: #f9f2e6;
+  margin-left: 25px;
+}
+.getAll {
   background-color: #f9f2e6;
   margin-left: 25px;
 }

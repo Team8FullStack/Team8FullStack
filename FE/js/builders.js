@@ -46,6 +46,7 @@ mainpage: [
 "</header>",
 "<div class='col-md-8'>",
 "<div class='col-md-3'>",
+"<button class='getAll btn btn-default' onClick='get.allMatches()'>Get NEW Matches</button>",
 "<button class='getmatch btn btn-default' onClick='get.closestMatch()'>Get Closest Match</button>",
 "<button class='getopp btn btn-default' onClick='get.oppositeMatch()'>Get Opposite Match</button>",
 "<button class='delete btn btn-default' onClick='events.deleteUser()'>Delete Account</button>",
