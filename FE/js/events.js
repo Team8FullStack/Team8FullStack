@@ -85,15 +85,12 @@ var events = {
          $('.match1').html(display);
        });
      },
-
-     deleteUser: function () {
-      $.ajax({
-        method: 'POST',
-        url: '/delete-user',
-        success: function(notdeleted) {
-
-        }
-      });
-     }
+     getProfile: function (){
+       $('.mainpage').on('load', function(){
+         var profiletmpl = _.template(templates.profile);
+         var display = profiletmpl(match);
+         $('.profilepic').html(display);
+       });
+     },
 
 };

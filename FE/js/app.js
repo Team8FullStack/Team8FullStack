@@ -10,6 +10,7 @@ var app = {
     styles.signIn();
     events.enterSite();
     events.getClosestMatch();
+    events.getProfile();
   },
 
 };
