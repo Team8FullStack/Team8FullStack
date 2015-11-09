@@ -47,7 +47,7 @@ var events = {
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
             stereotypeName: $('select[name="stereotypeName"]').val(),
-            picture: $('input[name="picture"]').val()
+            // picture: $('input[name="picture"]').val()
           },
           success: function(data){
             console.log(data);
@@ -88,7 +88,15 @@ var events = {
          $('.profileinfo').html(lala);
       });
 
+      //  });
      },
+    //  getProfile: function (){
+    //    $('.mainpage').on('load', function(){
+    //      var profiletmpl = _.template(templates.profile);
+    //      var display = profiletmpl(match);
+    //      $('.profilepic').html(display);
+    //    });
+    //  },
 
     //  getProfile: function (){
     //    $('.col-md-9').ready(function(){
