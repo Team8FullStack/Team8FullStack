@@ -51,6 +51,7 @@ public class Main {
             user.location = results.getString("location");
             user.age = results.getInt("age");
             user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
+            user.picURL = results.getString("pic_url");
         }
         return user;
     }
@@ -69,6 +70,7 @@ public class Main {
             user.location = results.getString("location");
             user.age = results.getInt("age");
             user.stereotype = parser.parse(results.getString("stereotype_json"), Stereotype.class);
+            user.picURL = results.getString("pic_url");
             users.add(user);
         }
         return users;
