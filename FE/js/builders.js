@@ -69,7 +69,7 @@ profile: [
   "<h2><%= username %></h2>",
   "<img src='<%= picture %> />'",
   "<ul>",
-  "<li>Stereotype: <%= typeName %></li>"
+  "<li>Stereotype: <%= typeName %></li>",
   "<li>Favorite Drink: <%= drink %></li>",
   "<li>Favorite Food: <%= food %></li>",
   "<li>Favorite Hangout Spot: <%= hangout %></li>",
