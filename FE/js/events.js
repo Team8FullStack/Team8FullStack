@@ -46,7 +46,8 @@ var events = {
             location: $('input[name="location"]').val(),
             password: $('input[name="password"]').val(),
             gender: $('select[class="gender"]').val(),
-            stereotypeName: $('select[name="stereotypeName"]').val()
+            stereotypeName: $('select[name="stereotypeName"]').val(),
+            picture: $('input[name="picture"]').val() || "http://rccaleastcentral.org/image/default-user.jpg"
           },
           success: function(data){
             console.log(data);
