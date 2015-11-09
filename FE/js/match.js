@@ -49,25 +49,55 @@ var get = {
   },
 
   oppositeMatch: function() {
-    // var oppositeValueArray: [
-    //   Hipster: ,
-    //   Frat Star / Sorority
-    // ];
+     opposite = "";
 
+    oppositeValueArray = {
+      Hipster: {
+        name: "Hipster",
+        opp: "Frat Star / Sorostitute"
+      },
+      Frat: {
+        name: "Frat Star / Sorostitute",
+        opp: "Hipster"
+      },
+      Hippie: {
+        name: "Hippie",
+        opp: "Crossfit"
+      },
+      Crossfit: {
+        name: "Crossfit",
+        opp: "Hippie"
+      },
+      Programmer: {
+        name: "Programmer",
+        opp: "Skater"
+      },
+      Skater: {
+        name: "Skater",
+        opp: "Programmer"
+      }
+    };
+
+    // find the opposite stereotype
     userType = activeUser.stereotype.typeName;
-    // this is where the match is picked from for this 'closest' filter
+    _.each(oppositeValueArray, function (currVal, idx, arr) {
+      if (currVal.opp === userType) {
+        opposite = currVal.name;
+      }
+    });
+
     oppositeTypeArray = [];
 
     _.each(matchArray, function(currVal, idx, arr) {
-      // checks for the same stereotype
-      if (currVal.stereotype.typeName === userType) {
-        sameTypeArray.push(currVal);
+      // checks for the opposite stereotype
+      if (currVal.stereotype.typeName === opposite) {
+        oppositeTypeArray.push(currVal);
       }
     });
 
      // idxNum is set to a random whole number between 0 and the length of the array - 1
-    idxNum = Math.floor(Math.random() * (sameTypeArray.length - 1)) + 0;
-    match = sameTypeArray[idxNum];
+    idxNum = Math.floor(Math.random() * (oppositeTypeArray.length - 1)) + 0;
+    match = oppositeTypeArray[idxNum];
 
     console.log(match);
 

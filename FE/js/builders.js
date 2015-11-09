@@ -25,11 +25,7 @@ createUser: [
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='password' class='password' name='password' placeholder='enter password'>",
-<<<<<<< HEAD
-"<input name='picture' type='text' placeholder='Enter an image URL'>",
-=======
 // "<input name='picture' type='text' placeholder='Enter an image URL'>",
->>>>>>> b18b624836cf56d2dccc7223c76c23ebea2a8264
 "<select name='stereotypeName' class='selectpicker stereotypeName'>",
 "<option>What are you?</option>",
 "<option class='stereotypeName'>Hippie</option>",
@@ -37,7 +33,7 @@ createUser: [
 "<option class='stereotypeName'>Programmer</option>",
 "<option class='stereotypeName'>Crossfit</option>",
 "<option class='stereotypeName'>Hipster</option>",
-"<option class='stereotypeName'>Frat Star / Sorostitute</option>",
+"<option class='stereotypeName'>Frat Star / Sorority Sis</option>",
 "</select>",
 "<button type='submit' class='signup btn btn-default' name='signup'>Start Stereotyping!</button>",
 "</div>"
