@@ -9,7 +9,7 @@
 var get = {
   allMatches: function() {
     $.ajax({
-      url: '/get-users',  
+      url: '/get-users',
       method: 'GET',
       success: function(data) {
         Mdata = JSON.parse(data);
@@ -29,7 +29,7 @@ var get = {
   },
 
   closestMatch: function() {
-    var userType = activeUser.stereotype.typeName;
+    userType = activeUser.stereotype.typeName;
     // this is where the match is picked from for this 'closest' filter
     sameTypeArray = [];
 
@@ -49,6 +49,26 @@ var get = {
   },
 
   oppositeMatch: function() {
+    var oppositeValueArray: [
+      
+    ];
+
+    userType = activeUser.stereotype.typeName;
+    // this is where the match is picked from for this 'closest' filter
+    oppositeTypeArray = [];
+
+    _.each(matchArray, function(currVal, idx, arr) {
+      // checks for the same stereotype
+      if (currVal.stereotype.typeName === userType) {
+        sameTypeArray.push(currVal);
+      }
+    });
+
+     // idxNum is set to a random whole number between 0 and the length of the array - 1
+    idxNum = Math.floor(Math.random() * (sameTypeArray.length - 1)) + 0;
+    match = sameTypeArray[idxNum];
+
+    console.log(match);
 
   },
 

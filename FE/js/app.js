@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 activeUser = {};
 matchArray = [];
+match = {};
 
 var app = {
   init: function() {
