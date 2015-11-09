@@ -141,7 +141,7 @@ public class Main {
     }
 
     public static void removeUser (Connection conn, String username) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("DELETE * FROM users WHERE username = ?");
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM users WHERE username = ?");
         stmt.setString(1, username);
         stmt.execute();
     }

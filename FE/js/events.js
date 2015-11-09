@@ -21,9 +21,7 @@ var events = {
         $('.msgArea').html('<p>Incorrect username or password</p>');
       }
     });
-
-},
-
+    },
 
   createUser: function (){
     $('body').on('click', '.revealCreateUser', function(event) {
@@ -99,6 +97,15 @@ var events = {
          var display = profiletmpl(match);
          $('.match1').html(display);
        });
-     }
+     },
+
+     getProfile: function (){
+       $('.mainpage').on('load', function(){
+         var profiletmpl = _.template(templates.profile);
+         var display = profiletmpl(match);
+         $('.profilepic').html(display);
+       });
+     },
+
 
 };
