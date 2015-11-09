@@ -87,12 +87,12 @@ var events = {
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
 
-         var picture = _.template(templates.picture);
-         image = picture(activeUser);
-         $('.profilepic').html(image);
-
-         matchimg = picture(match);
-         $('.matchPic').html(matchimg);
+        //  var picture = _.template(templates.picture);
+        //  image = picture(activeUser);
+        //  $('.profilepic').html(image);
+         //
+        //  matchimg = picture(match);
+        //  $('.matchPic').html(matchimg);
 
       });
      },
@@ -107,12 +107,12 @@ var events = {
          var lala = profiletmpl(activeUser);
          $('.profileinfo').html(lala);
 
-         var picture = _.template(templates.picture);
-         image = picture(activeUser);
-         $('.profilepic').html(image);
+        //  var picture = _.template(templates.picture);
+        //  image = picture(activeUser);
+        //  $('.profilepic').html(image);
 
-         matchimg = picture(oppositeMatch);
-         $('.matchPic').html(matchimg);
+        //  matchimg = picture(oppositeMatch);
+        //  $('.matchPic').html(matchimg);
        });
      },
 
