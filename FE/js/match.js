@@ -49,9 +49,10 @@ var get = {
   },
 
   oppositeMatch: function() {
-    var oppositeValueArray: [
-      
-    ];
+    // var oppositeValueArray: [
+    //   Hipster: ,
+    //   Frat Star / Sorority
+    // ];
 
     userType = activeUser.stereotype.typeName;
     // this is where the match is picked from for this 'closest' filter
