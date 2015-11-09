@@ -81,9 +81,15 @@ var events = {
        $('.wholethingy').on('click', '.getmatch', function(){
          var profiletmpl = _.template(templates.profile);
          get.closestMatch();
+
          var display = profiletmpl(match);
          $('.match1').html(display);
-       });
+         var lala = profiletmpl(activeUser);
+         $('.profileinfo').html(lala);
+      });
+
+      //  });
+      //  });
      },
 
      getOppositeMatch: function (){
@@ -102,5 +108,20 @@ var events = {
          $('.profilepic').html(display);
        });
      },
+    //  getProfile: function (){
+    //    $('.mainpage').on('load', function(){
+    //      var profiletmpl = _.template(templates.profile);
+    //      var display = profiletmpl(match);
+    //      $('.profilepic').html(display);
+    //    });
+    //  },
+
+    //  getProfile: function (){
+    //    $('.col-md-9').ready(function(){
+    //      var profiletmpl = _.template(templates.profile);
+    //      var display = profiletmpl(activeUser);
+    //      $('.profilepic').html(display);
+    //    });
+    //  },
 
 };

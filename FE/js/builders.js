@@ -25,7 +25,7 @@ createUser: [
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='password' class='password' name='password' placeholder='enter password'>",
-// "<input name='picture' type='text' placeholder='Enter an image URL'>",
+"<input name='picture' type='text' placeholder='Enter an image URL'>",
 "<select name='stereotypeName' class='selectpicker stereotypeName'>",
 "<option>What are you?</option>",
 "<option class='stereotypeName'>Hippie</option>",
@@ -64,8 +64,9 @@ mainpage: [
 ].join(""),
 
 profile: [
-  "<h2><%= username %></h2>",
-  // "<img src='<%= picture %>' />",
+  "<h3><%= username %></h3>",
+  
+  // "<img src='<%= picture %>'/>",
   "<ul>",
   "<li>Stereotype: <%= stereotype.typeName %></li>",
   "<li>Favorite Drink: <%= stereotype.drink %></li>",
