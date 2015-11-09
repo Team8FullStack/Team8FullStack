@@ -25,10 +25,13 @@ createUser: [
 "<input type='text' class='location' name='location' placeholder='enter your location'>",
 "<input type='text' class='username' name='username' placeholder='enter username'>",
 "<input type='password' class='password' name='password' placeholder='enter password'>",
+<<<<<<< HEAD
 "<input name='picture' type='text' placeholder='Enter an image URL'>",
+=======
+// "<input name='picture' type='text' placeholder='Enter an image URL'>",
+>>>>>>> b18b624836cf56d2dccc7223c76c23ebea2a8264
 "<select name='stereotypeName' class='selectpicker stereotypeName'>",
 "<option>What are you?</option>",
-"<option></option>",
 "<option class='stereotypeName'>Hippie</option>",
 "<option class='stereotypeName'>Skater</option>",
 "<option class='stereotypeName'>Programmer</option>",
@@ -47,11 +50,9 @@ mainpage: [
 "</header>",
 "<div class='col-md-8'>",
 "<div class='col-md-3'>",
-"<button onClick='get.closestMatch'>Get Closest Match</button>",
+"<button class='getmatch btn btn-default' onClick='get.closestMatch'>Get Closest Match</button>",
 "<section class='matches'>",
 "<div class='match1'></div>",
-"<div class='match2'></div>",
-"<div class='match3'></div>",
 "</section>",
 "</div>",
 "<div class='col-md-9'>",
@@ -67,15 +68,15 @@ mainpage: [
 
 profile: [
   "<h2><%= username %></h2>",
-  "<img src='<%= picture %>' />",
+  // "<img src='<%= picture %>' />",
   "<ul>",
-  "<li>Stereotype: <%= typeName %></li>",
-  "<li>Favorite Drink: <%= drink %></li>",
-  "<li>Favorite Food: <%= food %></li>",
-  "<li>Favorite Hangout Spot: <%= hangout %></li>",
-  "<li>Hobby: <%= hobby %></li>",
-  "<li>Music: <%= music %></li>",
-  "<li>Style: <%= style %></li>",
+  "<li>Stereotype: <%= stereotype.typeName %></li>",
+  "<li>Favorite Drink: <%= stereotype.drink %></li>",
+  "<li>Favorite Food: <%= stereotype.food %></li>",
+  "<li>Favorite Hangout Spot: <%= stereotype.hangout %></li>",
+  "<li>Hobby: <%= stereotype.hobby %></li>",
+  "<li>Music: <%= stereotype.music %></li>",
+  "<li>Style: <%= stereotype.style %></li>",
   "</ul>"
 ].join("")
 

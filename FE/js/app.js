@@ -10,6 +10,7 @@ var app = {
   init: function() {
     styles.signIn();
     events.enterSite();
+    events.getClosestMatch();
   },
 
 };
